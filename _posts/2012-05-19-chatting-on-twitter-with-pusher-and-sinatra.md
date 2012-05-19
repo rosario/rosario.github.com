@@ -24,19 +24,11 @@ is used for templates. Finally a custom Sprockets process will glue everything t
 ![qop chat](/images/qop2.png "QoP Chat")
 
 
-A bookmarklet is used to load the widget from our server. The widget will be appear on top of the Twitter page. 
-the widget needs to do cross domain AJAX requests to communicate with our server. Can we do that ?
 
+The bookmarklet
+---------------
 
-Of CORS We can
-----------------
-
-
-CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS,
-and we only care about modern browsers. It is then important to tell our server we trust and we accept AJAX requests
-originated from _twitter.com_. We could use JSONP, but that is really old school (and CORS is more elegant).
-
-The chat widget is loaded with this bookmarklet:
+A bookmarklet is used to load the widget from our server, and this is the code:
 
     {% highlight javascript %}
     
@@ -60,7 +52,8 @@ Note that it will be easy to create a Chrome Extension, just add a _manifest.jso
 file _application.js_ contains the entire widget code.
 
 
-First thing to do
+
+Loading, please wait
 -----------------
 
 We'll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load the **qop**.
@@ -118,6 +111,9 @@ communicates with typical _AJAX_ requests with our server.
 ![qop chat](/images/pusher.png "QoP Chat")
 
 
+CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS,
+and we only care about modern browsers. We could use JSONP, but that is really old school (and CORS is more elegant).
+
 The browser makes _CORS_ requests to our server using jQuery:
 
     {% highlight coffeescript %}
@@ -151,6 +147,7 @@ any better way of doing this, please let me know.
 
 The server needs to know we want to accepts request from _twitter.com_. Since the server is a **Sinatra** 
 application we use the **rack-cors** gem. (You want to include localhost for testing). 
+
 
 
     {% highlight ruby %}

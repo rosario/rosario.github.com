@@ -9,7 +9,7 @@
   ================================================== -->
 	<meta charset="utf-8">
 	<title>Blog of Saro</title>
-	<meta name="description" content="">
+	<meta name="description" content="Blog of a software developer living and working in europe">
 	<meta name="author" content="">
 
 	<!-- Mobile Specific Metas
@@ -65,13 +65,9 @@
 
 <p><img alt='qop chat' src='/images/qop2.png' /></p>
 
-<p>We are going to use a bookmarklet to load the widget from our server. The widget will be appear on top of the Twitter page. To communicate with our server, the widget will have make cross domain AJAX requests. Can we do that ?</p>
+<h2 id='the_bookmarklet'>The bookmarklet</h2>
 
-<h2 id='of_cors_we_can'>Of CORS We can</h2>
-
-<p>CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS, and we only care about modern browsers. It is then important to tell our server we trust and we accept AJAX requests originated from <em>twitter.com</em>. We could use JSONP, but that is really old school (and CORS is more elegant).</p>
-
-<p>The chat widget is loaded with this bookmarklet:</p>
+<p>A bookmarklet is used to load the widget from our server, and this is the code:</p>
 <div class='highlight'><pre><code class='javascript'>    
     	<span class='p'>(</span><span class='kd'>function</span><span class='p'>(){</span>
     		<span class='nx'>link</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;link&#39;</span><span class='p'>);</span>
@@ -91,7 +87,7 @@
 </div>
 <p>Note that it will be easy to create a Chrome Extension, just add a <em>manifest.json</em> and Chrome will do the rest. The file <em>application.js</em> contains the entire widget code.</p>
 
-<h2 id='first_thing_to_do'>First thing to do</h2>
+<h2 id='loading_please_wait'>Loading, please wait</h2>
 
 <p>We&#8217;ll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load the <strong>qop</strong>.</p>
 <div class='highlight'><pre><code class='coffeescript'>    
@@ -133,6 +129,8 @@
 <p><strong>Pusher</strong> provides a great <strong>websockets</strong> service and API, and we&#8217;ll use websockets to send chat messages. The browsers communicates with typical <em>AJAX</em> requests with our server.</p>
 
 <p><img alt='qop chat' src='/images/pusher.png' /></p>
+
+<p>CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS, and we only care about modern browsers. We could use JSONP, but that is really old school (and CORS is more elegant).</p>
 
 <p>The browser makes <em>CORS</em> requests to our server using jQuery:</p>
 <div class='highlight'><pre><code class='coffeescript'>    
