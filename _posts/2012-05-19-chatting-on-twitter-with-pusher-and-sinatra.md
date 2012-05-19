@@ -89,7 +89,7 @@ The **App** class doesn't do much, just initialise Pusher with the right credent
 {% highlight coffeescript%}
 
 	class QoP.App
-	  constructor: () ->
+	  constructor: ->
 	    qop$("<div id='qop'></div>").appendTo 'body'
 	    Pusher.channel_auth_endpoint = 'https://YOURQOPSERVER.herokuapp.com/pusher/auth'
 	    Pusher.channel_auth_transport = 'jsonp'
