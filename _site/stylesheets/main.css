@@ -56,9 +56,7 @@ nav {
   font-weight: bold;}
   
 nav ul {
-  float: left;
   display:block;
-  clear:both;
 }
 
 nav ul li {

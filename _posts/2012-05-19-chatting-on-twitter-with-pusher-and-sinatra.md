@@ -56,7 +56,7 @@ file _application.js_ contains the entire widget code.
 Loading, please wait
 -----------------
 
-We'll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load the **qop**.
+We'll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load **qop**.
 
     {% highlight coffeescript %}
     
@@ -145,7 +145,7 @@ and set **withCredentials** to true. It shouldn't be needed, but just in case we
 to true. It is a bit redundant, but there have been cases it won't work otherwise. If you know
 any better way of doing this, please let me know.
 
-The server needs to know we want to accepts request from _twitter.com_. Since the server is a **Sinatra** 
+The server needs to know we want to accept requests from _twitter.com_. Since the server is a **Sinatra** 
 application we use the **rack-cors** gem. (You want to include localhost for testing). 
 
 
@@ -185,7 +185,7 @@ application we use the **rack-cors** gem. (You want to include localhost for tes
     {% endhighlight %}
 
 
-Each url correspond to a service we need to provide to *qop*.
+Each url corresponds to a service we provide to the chat widget.
 
 My Friends are your Friends
 ---------------------------
