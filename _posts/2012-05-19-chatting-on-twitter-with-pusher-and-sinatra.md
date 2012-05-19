@@ -24,8 +24,8 @@ is used for templates. Finally a custom Sprockets process will glue everything t
 ![qop chat](/images/qop2.png "QoP Chat")
 
 
-We are going to use a bookmarklet to load the widget from our server. The widget will be appear on top of the Twitter page. 
-To communicate with our server, the widget will have make cross domain AJAX requests. Can we do that ?
+A bookmarklet is used to load the widget from our server. The widget will be appear on top of the Twitter page. 
+the widget needs to do cross domain AJAX requests to communicate with our server. Can we do that ?
 
 
 Of CORS We can
