@@ -110,7 +110,7 @@ You're a bit too Pushy
 ![qop chat](/images/pusher.png "QoP Chat")
 
 
-The browser send _AJAX_ requests to our server. Since the chat widget is loaded from _twitter.com_, we are 
+The browser sends _AJAX_ requests to our server. Since the chat widget is loaded from _twitter.com_, we are 
 doing cross domain requests. CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern 
 browsers support CORS, and we only care about modern browsers. We could use JSONP, but that is really old school 
 (and CORS is more elegant).
@@ -427,7 +427,7 @@ We also need to subscribe the users to the new channel.
 
 
 
-Twitter has keyboard shortcuts, we need to disable them when the user is typing. After the user hit _enter_
+Twitter has keyboard shortcuts, we need to disable them when the user is typing. After the user hits _enter_
 we send the message to our server:
 
     {% highlight coffeescript%}
@@ -473,5 +473,7 @@ That's all Folks!
 
 There's a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use 
 DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and database 
-models to hold user and friendship data. But that will be the subject of the next post!
+models to hold user and friendship data. 
+
+But that will be the subject of the next post!
 

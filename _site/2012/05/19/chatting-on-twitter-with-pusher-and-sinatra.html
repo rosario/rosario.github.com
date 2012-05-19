@@ -115,7 +115,7 @@
 </div>
 <p>The <strong>App</strong> class doesn&#8217;t do much, just initialise Pusher with the right credentials, and create the contact list.</p>
 <div class='highlight'><pre><code class='coffeescript'>	<span class='k'>class</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>App</span>
-	  <span class='nv'>constructor: </span><span class='nf'>() -&gt;</span>
+	  <span class='nv'>constructor: </span><span class='o'>-&gt;</span>
 	    <span class='nx'>qop$</span><span class='p'>(</span><span class='s2'>&quot;&lt;div id=&#39;qop&#39;&gt;&lt;/div&gt;&quot;</span><span class='p'>).</span><span class='nx'>appendTo</span> <span class='s1'>&#39;body&#39;</span>
 	    <span class='nv'>Pusher.channel_auth_endpoint = </span><span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/pusher/auth&#39;</span>
 	    <span class='nv'>Pusher.channel_auth_transport = </span><span class='s1'>&#39;jsonp&#39;</span>
@@ -126,11 +126,11 @@
 </div>
 <h2 id='youre_a_bit_too_pushy'>You&#8217;re a bit too Pushy</h2>
 
-<p><strong>Pusher</strong> provides a great <strong>websockets</strong> service and API, and we&#8217;ll use websockets to send chat messages. The browsers communicates with typical <em>AJAX</em> requests with our server.</p>
+<p><strong>Pusher</strong> provides a great <strong>websockets</strong> service and API, and we&#8217;ll use websockets to send chat messages.</p>
 
 <p><img alt='qop chat' src='/images/pusher.png' /></p>
 
-<p>CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS, and we only care about modern browsers. We could use JSONP, but that is really old school (and CORS is more elegant).</p>
+<p>The browser sends <em>AJAX</em> requests to our server. Since the chat widget is loaded from <em>twitter.com</em>, we are doing cross domain requests. CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS, and we only care about modern browsers. We could use JSONP, but that is really old school (and CORS is more elegant).</p>
 
 <p>The browser makes <em>CORS</em> requests to our server using jQuery:</p>
 <div class='highlight'><pre><code class='coffeescript'>    
@@ -392,7 +392,7 @@
     
 </code></pre>
 </div>
-<p>Twitter has keyboard shortcuts, we need to disable them when the user is typing. After the user hit <em>enter</em> we send the message to our server:</p>
+<p>Twitter has keyboard shortcuts, we need to disable them when the user is typing. After the user hits <em>enter</em> we send the message to our server:</p>
 <div class='highlight'><pre><code class='coffeescript'>    
     <span class='nv'>enableTextBox: </span><span class='o'>-&gt;</span>
       <span class='nv'>textBox = </span><span class='nx'>@box</span><span class='p'>.</span><span class='nx'>find</span><span class='p'>(</span><span class='s1'>&#39;.chatboxtextarea&#39;</span><span class='p'>)</span>
@@ -425,7 +425,9 @@
 </div>
 <h2 id='thats_all_folks'>That&#8217;s all Folks!</h2>
 
-<p>There&#8217;s a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and database models to hold user and friendship data. But that will be the subject of the next post!</p>
+<p>There&#8217;s a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and database models to hold user and friendship data.</p>
+
+<p>But that will be the subject of the next post!</p>
 
    
 
