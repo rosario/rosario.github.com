@@ -104,15 +104,16 @@ You're a bit too Pushy
 ----------------------
 
 
-**Pusher** provides a great **websockets** service and API, and we'll use websockets to send chat messages. The browsers
-communicates with typical _AJAX_ requests with our server.
+**Pusher** provides a great **websockets** service and API, and we'll use websockets to send chat messages.
 
 
 ![qop chat](/images/pusher.png "QoP Chat")
 
 
-CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern browsers support CORS,
-and we only care about modern browsers. We could use JSONP, but that is really old school (and CORS is more elegant).
+The browser send _AJAX_ requests to our server. Since the chat widget is loaded from _twitter.com_, we are 
+doing cross domain requests. CORS stands for Cross-Origin Resource Sharing, and it does what it says. Modern 
+browsers support CORS, and we only care about modern browsers. We could use JSONP, but that is really old school 
+(and CORS is more elegant).
 
 The browser makes _CORS_ requests to our server using jQuery:
 
