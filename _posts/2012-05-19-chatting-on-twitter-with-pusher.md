@@ -2,7 +2,7 @@
 layout: post
 title: Chatting on Twitter (1/2)
 image: '/images/screenshot.png'
-comments_url: "#"
+comments_url: "http://news.ycombinator.com/item?id=3998828"
 excerpt: |-
     Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
     
