@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Chatting on Twitter (1/2)
+image: '/images/screenshot.png'
 excerpt: |-
     Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
     
@@ -9,6 +10,7 @@ excerpt: |-
 
 ### Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our Twitter friends.
 
+![qop chat](/images/screenshot.png "qop chat screenshot")
 
 
 Overview: qop qop qop
@@ -23,7 +25,8 @@ are written in Datamapper, and Handlebars is used for templates.
 Finally a custom Sprockets process will glue everything together. As easy as that!
 
 
-![qop chat](/images/qop2.png "QoP Chat")
+![qop chat](/images/qop2.png "qop drawing")
+
 
 
 
