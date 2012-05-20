@@ -54,16 +54,16 @@
 			&nbsp;
 		</div>
 		<div class="twelve columns content">
-			<h1 class="title">Chatting on Twitter</h1>
+			<h1 class="title">Chatting on Twitter (1/2)</h1>
 <p class="date"> 19 May 2012 </p>
 
-<h3 id='can_we_embed_a_chat_widget_on_twitter_yes_with_few_tricks_and_pusher_we_can_create_a_widget_and_chat_with_our_friends'>Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our friends.</h3>
+<h3 id='can_we_embed_a_chat_widget_on_twitter_yes_with_few_tricks_and_pusher_we_can_create_a_widget_and_chat_with_our_twitter_friends'>Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.</h3>
 
 <h2 id='overview_qop_qop_qop'>Overview: qop qop qop</h2>
 
-<p>This is a short description of <strong>qop</strong>, a simple and unpretentious chat widget that can be embedded on Twitter. It is written in Ruby and Coffescript.</p>
+<p>This is a short description of <strong>qop</strong>, a simple and unpretentious chat widget written in Ruby and Coffeescript. It uses <strong>Pusher</strong> to send chat messages to our <strong>Twitter</strong> friends, and it can be embedded on a Twitter page.</p>
 
-<p>Pusher is used to send chat messages and notifications. Web services are provided with Sinatra. Authentication is done via Omniauth. Data models are written in Datamapper, and Handlebars is used for templates.</p>
+<p>The technical part: Web services are provided with Sinatra. Authentication is done via Omniauth. Data models are written in Datamapper, and Handlebars is used for templates.</p>
 
 <p>Finally a custom Sprockets process will glue everything together. As easy as that!</p>
 
@@ -71,7 +71,7 @@
 
 <h2 id='the_bookmarklet'>The bookmarklet</h2>
 
-<p>A bookmarklet is used to load the widget from our server, and this is the code:</p>
+<p>A bookmarklet loads the widget from our server, and this is the code:</p>
 <div class='highlight'><pre><code class='javascript'>    
     	<span class='p'>(</span><span class='kd'>function</span><span class='p'>(){</span>
     		<span class='nx'>link</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;link&#39;</span><span class='p'>);</span>
@@ -89,11 +89,11 @@
     
 </code></pre>
 </div>
-<p>Note that it will be easy to create a Chrome Extension, just add a <em>manifest.json</em> and Chrome will do the rest. The file <em>application.js</em> contains the entire widget code.</p>
+<p>Note that it will be easy to create a Chrome Extension, just add a <em>manifest.json</em> and Chrome will do the rest. The file <em>application.js</em> contains the entire javascript code for the widget.</p>
 
 <h2 id='loading_please_wait'>Loading, please wait</h2>
 
-<p>We&#8217;ll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load <strong>qop</strong>.</p>
+<p>We load jQuery and wait until is ready to be used. We also need to load Pusher library, and finally load <strong>qop</strong>.</p>
 <div class='highlight'><pre><code class='coffeescript'>    
     	<span class='nv'>done = </span><span class='kc'>false</span>
     	<span class='nv'>script = </span><span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;script&#39;</span><span class='p'>)</span>
@@ -130,7 +130,7 @@
 </div>
 <h2 id='youre_a_bit_too_pushy'>You&#8217;re a bit too Pushy</h2>
 
-<p><strong>Pusher</strong> provides a great <strong>websockets</strong> service and API, and we&#8217;ll use websockets to send chat messages.</p>
+<p><strong>Pusher</strong> provides a great <strong>websockets</strong> service and API, and we use websockets to send chat messages to our twitter friends.</p>
 
 <p><img alt='qop chat' src='/images/pusher.png' /></p>
 
@@ -429,7 +429,7 @@
 </div>
 <h2 id='thats_all_folks'>That&#8217;s all Folks!</h2>
 
-<p>There&#8217;s a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and database models to hold user and friendship data.</p>
+<p>There&#8217;s a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and the database relations and models used.</p>
 
 <p>But that will be the subject of the next post!</p>
 

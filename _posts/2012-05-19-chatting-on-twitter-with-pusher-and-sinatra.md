@@ -1,24 +1,24 @@
 ---
 layout: post
-title: Chatting on Twitter
+title: Chatting on Twitter (1/2)
 excerpt: |-
-    Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our friends.
+    Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
   
 ---
 
 
-### Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our friends.
+### Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our Twitter friends.
 
 
 
 Overview: qop qop qop
 --------
 
-This is a short description of **qop**, a simple and unpretentious chat widget that can be embedded on Twitter.
-It is written in Ruby and Coffescript. 
+This is a short description of **qop**, a simple and unpretentious chat widget written in Ruby and Coffeescript.
+It uses **Pusher** to send chat messages to our **Twitter** friends, and it can be embedded on a Twitter page.
 
-Pusher is used to send chat messages and notifications. Web services are provided with Sinatra. Authentication 
-is done via Omniauth. Data models are written in Datamapper, and Handlebars is used for templates. 
+The technical part: Web services are provided with Sinatra. Authentication is done via Omniauth. Data models 
+are written in Datamapper, and Handlebars is used for templates. 
 
 Finally a custom Sprockets process will glue everything together. As easy as that!
 
@@ -30,7 +30,7 @@ Finally a custom Sprockets process will glue everything together. As easy as tha
 The bookmarklet
 ---------------
 
-A bookmarklet is used to load the widget from our server, and this is the code:
+A bookmarklet loads the widget from our server, and this is the code:
 
     {% highlight javascript %}
     
@@ -51,14 +51,14 @@ A bookmarklet is used to load the widget from our server, and this is the code:
 
 
 Note that it will be easy to create a Chrome Extension, just add a _manifest.json_ and Chrome will do the rest. The 
-file _application.js_ contains the entire widget code.
+file _application.js_ contains the entire javascript code for the widget.
 
 
 
 Loading, please wait
 -----------------
 
-We'll load jQuery and wait until is completely loaded. We also need to load Pusher library, and finally load **qop**.
+We load jQuery and wait until is ready to be used. We also need to load Pusher library, and finally load **qop**.
 
     {% highlight coffeescript %}
     
@@ -106,7 +106,8 @@ You're a bit too Pushy
 ----------------------
 
 
-**Pusher** provides a great **websockets** service and API, and we'll use websockets to send chat messages.
+**Pusher** provides a great **websockets** service and API, and we use websockets to send chat messages 
+to our twitter friends.
 
 
 ![qop chat](/images/pusher.png "QoP Chat")
@@ -474,8 +475,8 @@ That's all Folks!
 -----------------
 
 There's a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use 
-DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and database 
-models to hold user and friendship data. 
+DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and the database 
+relations and models used.
 
 But that will be the subject of the next post!
 
