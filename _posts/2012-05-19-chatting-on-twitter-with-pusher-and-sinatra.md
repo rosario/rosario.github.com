@@ -2,8 +2,7 @@
 layout: post
 title: Chatting on Twitter
 excerpt: |-
-  #### Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our friends.
-  ![qop chat](/images/qop2.png "QoP Chat")
+    Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our friends.
   
 ---
 
@@ -16,9 +15,12 @@ Overview: qop qop qop
 --------
 
 This is a short description of **qop**, a simple and unpretentious chat widget that can be embedded on Twitter.
-It is written in Ruby and Coffescript. Pusher is used to send chat messages and notifications. Webservices are 
-provided with Sinatra. Authentication is done via Omniauth. Data models are written in Datamapper, and Handlebars 
-is used for templates. Finally a custom Sprockets process will glue everything together. As easy as that!
+It is written in Ruby and Coffescript. 
+
+Pusher is used to send chat messages and notifications. Web services are provided with Sinatra. Authentication 
+is done via Omniauth. Data models are written in Datamapper, and Handlebars is used for templates. 
+
+Finally a custom Sprockets process will glue everything together. As easy as that!
 
 
 ![qop chat](/images/qop2.png "QoP Chat")
