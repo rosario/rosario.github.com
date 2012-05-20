@@ -18,7 +18,8 @@ Overview: qop qop qop
 --------
 
 This is a short description of **qop**, a simple and unpretentious chat widget written in Ruby and Coffeescript.
-It uses **Pusher** to send chat messages to our **Twitter** friends, and it can be embedded on a Twitter page.
+It uses [Pusher](http://pusher.com/ "Pusher") to send chat messages to our  [Twitter](http://twitter.com/ "Twitter") 
+friends, and it can be embedded on a Twitter page.
 
 The technical part: Web services are provided with Sinatra. Authentication is done via Omniauth. Data models 
 are written in Datamapper, and Handlebars is used for templates. 
@@ -109,7 +110,7 @@ You're a bit too Pushy
 ----------------------
 
 
-**Pusher** provides a great **websockets** service and API, and we use websockets to send chat messages 
+[Pusher](http://pusher.com/ "Pusher") provides a great **websockets** service and API, and we use websockets to send chat messages 
 to our twitter friends.
 
 
