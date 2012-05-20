@@ -34,19 +34,19 @@ A bookmarklet loads the widget from our server, and this is the code:
 
     {% highlight javascript %}
     
-    	(function(){
-    		link = document.createElement('link');
-    		link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
-    		link.type = 'text/css';
-    		link.rel = 'stylesheet';
-    		document.getElementsByTagName('head')[0].appendChild(link);
+      (function(){
+        link = document.createElement('link');
+        link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        document.getElementsByTagName('head')[0].appendChild(link);
 
-    		var script = document.createElement('script');
-    		script.type = 'text/javascript';
-    		script.async = true;
-    		script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
-    		document.getElementsByTagName('head')[0].appendChild(script);
-    	})();
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      })();
     {% endhighlight %}
 
 
@@ -62,25 +62,25 @@ We load jQuery and wait until is ready to be used. We also need to load Pusher l
 
     {% highlight coffeescript %}
     
-    	done = false
-    	script = document.createElement('script')
-    	script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-
-    	script.onload = script.onreadystatechange = ->
-    	  if (!done and (!@readyState or @readyState =='loaded' or @readyState =='complete'))
-    	    done = true
-
-    	    window.qop$ = jQuery.noConflict();
-    	    window.qop$.support.cors = true
-
-    	    qop$.getScript("https://d3dy5gmtp8yhk7.cloudfront.net/1.11/pusher.min.js")
-    	      .done (script) ->
-    	        console.log 'loading app...'
-    	        app = new QoP.App()
-    	      .fail (jqxhr, settings, exception) ->
-    	        console.log 'failed'
-	
-    	document.getElementsByTagName('head')[0].appendChild(script)
+     done = false
+      script = document.createElement('script')
+      script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+      
+      script.onload = script.onreadystatechange = ->
+        if (!done and (!@readyState or @readyState =='loaded' or @readyState =='complete'))
+          done = true
+          
+          window.qop$ = jQuery.noConflict();
+          window.qop$.support.cors = true
+          
+          qop$.getScript("https://d3dy5gmtp8yhk7.cloudfront.net/1.11/pusher.min.js")
+            .done (script) ->
+              console.log 'loading app...'
+              app = new QoP.App()
+            .fail (jqxhr, settings, exception) ->
+              console.log 'failed'
+              
+      document.getElementsByTagName('head')[0].appendChild(script)
     {% endhighlight %}
 
 
@@ -90,14 +90,13 @@ The **App** class doesn't do much, just initialise Pusher with the right credent
 
 {% highlight coffeescript%}
 
-	class QoP.App
-	  constructor: ->
-	    qop$("<div id='qop'></div>").appendTo 'body'
-	    Pusher.channel_auth_endpoint = 'https://YOURQOPSERVER.herokuapp.com/pusher/auth'
-	    Pusher.channel_auth_transport = 'jsonp'
-	    QoP.pusher = new Pusher 'APPKEY'
-	    contacts = new QoP.Contacts('contact_list', 'Contact List')
-	
+    class QoP.App
+      constructor: ->
+        qop$("<div id='qop'></div>").appendTo 'body'
+        Pusher.channel_auth_endpoint = 'https://YOURQOPSERVER.herokuapp.com/pusher/auth'
+        Pusher.channel_auth_transport = 'jsonp'
+        QoP.pusher = new Pusher 'APPKEY'
+        contacts = new QoP.Contacts('contact_list', 'Contact List')
 {% endhighlight %}
 
 

@@ -73,19 +73,19 @@
 
 <p>A bookmarklet loads the widget from our server, and this is the code:</p>
 <div class='highlight'><pre><code class='javascript'>    
-    	<span class='p'>(</span><span class='kd'>function</span><span class='p'>(){</span>
-    		<span class='nx'>link</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;link&#39;</span><span class='p'>);</span>
-    		<span class='nx'>link</span><span class='p'>.</span><span class='nx'>href</span> <span class='o'>=</span> <span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/assets/application.css&#39;</span><span class='p'>;</span>
-    		<span class='nx'>link</span><span class='p'>.</span><span class='nx'>type</span> <span class='o'>=</span> <span class='s1'>&#39;text/css&#39;</span><span class='p'>;</span>
-    		<span class='nx'>link</span><span class='p'>.</span><span class='nx'>rel</span> <span class='o'>=</span> <span class='s1'>&#39;stylesheet&#39;</span><span class='p'>;</span>
-    		<span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>link</span><span class='p'>);</span>
+      <span class='p'>(</span><span class='kd'>function</span><span class='p'>(){</span>
+        <span class='nx'>link</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;link&#39;</span><span class='p'>);</span>
+        <span class='nx'>link</span><span class='p'>.</span><span class='nx'>href</span> <span class='o'>=</span> <span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/assets/application.css&#39;</span><span class='p'>;</span>
+        <span class='nx'>link</span><span class='p'>.</span><span class='nx'>type</span> <span class='o'>=</span> <span class='s1'>&#39;text/css&#39;</span><span class='p'>;</span>
+        <span class='nx'>link</span><span class='p'>.</span><span class='nx'>rel</span> <span class='o'>=</span> <span class='s1'>&#39;stylesheet&#39;</span><span class='p'>;</span>
+        <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>link</span><span class='p'>);</span>
 
-    		<span class='kd'>var</span> <span class='nx'>script</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;script&#39;</span><span class='p'>);</span>
-    		<span class='nx'>script</span><span class='p'>.</span><span class='nx'>type</span> <span class='o'>=</span> <span class='s1'>&#39;text/javascript&#39;</span><span class='p'>;</span>
-    		<span class='nx'>script</span><span class='p'>.</span><span class='nx'>async</span> <span class='o'>=</span> <span class='kc'>true</span><span class='p'>;</span>
-    		<span class='nx'>script</span><span class='p'>.</span><span class='nx'>src</span> <span class='o'>=</span> <span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/assets/application.js&#39;</span><span class='p'>;</span>
-    		<span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>script</span><span class='p'>);</span>
-    	<span class='p'>})();</span>
+        <span class='kd'>var</span> <span class='nx'>script</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;script&#39;</span><span class='p'>);</span>
+        <span class='nx'>script</span><span class='p'>.</span><span class='nx'>type</span> <span class='o'>=</span> <span class='s1'>&#39;text/javascript&#39;</span><span class='p'>;</span>
+        <span class='nx'>script</span><span class='p'>.</span><span class='nx'>async</span> <span class='o'>=</span> <span class='kc'>true</span><span class='p'>;</span>
+        <span class='nx'>script</span><span class='p'>.</span><span class='nx'>src</span> <span class='o'>=</span> <span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/assets/application.js&#39;</span><span class='p'>;</span>
+        <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>script</span><span class='p'>);</span>
+      <span class='p'>})();</span>
     
 </code></pre>
 </div>
@@ -95,37 +95,36 @@
 
 <p>We load jQuery and wait until is ready to be used. We also need to load Pusher library, and finally load <strong>qop</strong>.</p>
 <div class='highlight'><pre><code class='coffeescript'>    
-    	<span class='nv'>done = </span><span class='kc'>false</span>
-    	<span class='nv'>script = </span><span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;script&#39;</span><span class='p'>)</span>
-    	<span class='nv'>script.src = </span><span class='s1'>&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&#39;</span>
-
-    	<span class='nv'>script.onload = script.onreadystatechange = </span><span class='o'>-&gt;</span>
-    	  <span class='k'>if</span> <span class='p'>(</span><span class='o'>!</span><span class='nx'>done</span> <span class='o'>and</span> <span class='p'>(</span><span class='o'>!</span><span class='nx'>@readyState</span> <span class='o'>or</span> <span class='nx'>@readyState</span> <span class='o'>==</span><span class='s1'>&#39;loaded&#39;</span> <span class='o'>or</span> <span class='nx'>@readyState</span> <span class='o'>==</span><span class='s1'>&#39;complete&#39;</span><span class='p'>))</span>
-    	    <span class='nv'>done = </span><span class='kc'>true</span>
-
-    	    <span class='nb'>window</span><span class='p'>.</span><span class='nx'>qop</span><span class='nv'>$ = </span><span class='nx'>jQuery</span><span class='p'>.</span><span class='nx'>noConflict</span><span class='p'>();</span>
-    	    <span class='nb'>window</span><span class='p'>.</span><span class='nx'>qop</span><span class='nv'>$.support.cors = </span><span class='kc'>true</span>
-
-    	    <span class='nx'>qop$</span><span class='p'>.</span><span class='nx'>getScript</span><span class='p'>(</span><span class='s2'>&quot;https://d3dy5gmtp8yhk7.cloudfront.net/1.11/pusher.min.js&quot;</span><span class='p'>)</span>
-    	      <span class='p'>.</span><span class='nx'>done</span> <span class='nf'>(script) -&gt;</span>
-    	        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span> <span class='s1'>&#39;loading app...&#39;</span>
-    	        <span class='nv'>app = </span><span class='k'>new</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>App</span><span class='p'>()</span>
-    	      <span class='p'>.</span><span class='nx'>fail</span> <span class='nf'>(jqxhr, settings, exception) -&gt;</span>
-    	        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span> <span class='s1'>&#39;failed&#39;</span>
-	
-    	<span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>script</span><span class='p'>)</span>
+     <span class='nv'>done = </span><span class='kc'>false</span>
+      <span class='nv'>script = </span><span class='nb'>document</span><span class='p'>.</span><span class='nx'>createElement</span><span class='p'>(</span><span class='s1'>&#39;script&#39;</span><span class='p'>)</span>
+      <span class='nv'>script.src = </span><span class='s1'>&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&#39;</span>
+      
+      <span class='nv'>script.onload = script.onreadystatechange = </span><span class='o'>-&gt;</span>
+        <span class='k'>if</span> <span class='p'>(</span><span class='o'>!</span><span class='nx'>done</span> <span class='o'>and</span> <span class='p'>(</span><span class='o'>!</span><span class='nx'>@readyState</span> <span class='o'>or</span> <span class='nx'>@readyState</span> <span class='o'>==</span><span class='s1'>&#39;loaded&#39;</span> <span class='o'>or</span> <span class='nx'>@readyState</span> <span class='o'>==</span><span class='s1'>&#39;complete&#39;</span><span class='p'>))</span>
+          <span class='nv'>done = </span><span class='kc'>true</span>
+          
+          <span class='nb'>window</span><span class='p'>.</span><span class='nx'>qop</span><span class='nv'>$ = </span><span class='nx'>jQuery</span><span class='p'>.</span><span class='nx'>noConflict</span><span class='p'>();</span>
+          <span class='nb'>window</span><span class='p'>.</span><span class='nx'>qop</span><span class='nv'>$.support.cors = </span><span class='kc'>true</span>
+          
+          <span class='nx'>qop$</span><span class='p'>.</span><span class='nx'>getScript</span><span class='p'>(</span><span class='s2'>&quot;https://d3dy5gmtp8yhk7.cloudfront.net/1.11/pusher.min.js&quot;</span><span class='p'>)</span>
+            <span class='p'>.</span><span class='nx'>done</span> <span class='nf'>(script) -&gt;</span>
+              <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span> <span class='s1'>&#39;loading app...&#39;</span>
+              <span class='nv'>app = </span><span class='k'>new</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>App</span><span class='p'>()</span>
+            <span class='p'>.</span><span class='nx'>fail</span> <span class='nf'>(jqxhr, settings, exception) -&gt;</span>
+              <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span> <span class='s1'>&#39;failed&#39;</span>
+              
+      <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;head&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>appendChild</span><span class='p'>(</span><span class='nx'>script</span><span class='p'>)</span>
     
 </code></pre>
 </div>
 <p>The <strong>App</strong> class doesn&#8217;t do much, just initialise Pusher with the right credentials, and create the contact list.</p>
-<div class='highlight'><pre><code class='coffeescript'>	<span class='k'>class</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>App</span>
-	  <span class='nv'>constructor: </span><span class='o'>-&gt;</span>
-	    <span class='nx'>qop$</span><span class='p'>(</span><span class='s2'>&quot;&lt;div id=&#39;qop&#39;&gt;&lt;/div&gt;&quot;</span><span class='p'>).</span><span class='nx'>appendTo</span> <span class='s1'>&#39;body&#39;</span>
-	    <span class='nv'>Pusher.channel_auth_endpoint = </span><span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/pusher/auth&#39;</span>
-	    <span class='nv'>Pusher.channel_auth_transport = </span><span class='s1'>&#39;jsonp&#39;</span>
-	    <span class='nv'>QoP.pusher = </span><span class='k'>new</span> <span class='nx'>Pusher</span> <span class='s1'>&#39;APPKEY&#39;</span>
-	    <span class='nv'>contacts = </span><span class='k'>new</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>Contacts</span><span class='p'>(</span><span class='s1'>&#39;contact_list&#39;</span><span class='p'>,</span> <span class='s1'>&#39;Contact List&#39;</span><span class='p'>)</span>
-	
+<div class='highlight'><pre><code class='coffeescript'>    <span class='k'>class</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>App</span>
+      <span class='nv'>constructor: </span><span class='o'>-&gt;</span>
+        <span class='nx'>qop$</span><span class='p'>(</span><span class='s2'>&quot;&lt;div id=&#39;qop&#39;&gt;&lt;/div&gt;&quot;</span><span class='p'>).</span><span class='nx'>appendTo</span> <span class='s1'>&#39;body&#39;</span>
+        <span class='nv'>Pusher.channel_auth_endpoint = </span><span class='s1'>&#39;https://YOURQOPSERVER.herokuapp.com/pusher/auth&#39;</span>
+        <span class='nv'>Pusher.channel_auth_transport = </span><span class='s1'>&#39;jsonp&#39;</span>
+        <span class='nv'>QoP.pusher = </span><span class='k'>new</span> <span class='nx'>Pusher</span> <span class='s1'>&#39;APPKEY&#39;</span>
+        <span class='nv'>contacts = </span><span class='k'>new</span> <span class='nx'>QoP</span><span class='p'>.</span><span class='nx'>Contacts</span><span class='p'>(</span><span class='s1'>&#39;contact_list&#39;</span><span class='p'>,</span> <span class='s1'>&#39;Contact List&#39;</span><span class='p'>)</span>
 </code></pre>
 </div>
 <h2 id='youre_a_bit_too_pushy'>You&#8217;re a bit too Pushy</h2>
