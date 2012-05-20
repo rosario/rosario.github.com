@@ -2,6 +2,7 @@
 layout: post
 title: Chatting on Twitter (1/2)
 image: '/images/screenshot.png'
+comments_url: "#"
 excerpt: |-
     Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
     
@@ -88,7 +89,7 @@ We load jQuery and wait until is ready to be used. We also need to load Pusher l
 
 
 
-The **App** class doesn't do much, just initialise Pusher with the right credentials, and create the contact list.
+The **App** class doesn't do much, just initialise Pusher with the right credentials, and creates the contact list.
 
 
 {% highlight coffeescript%}
@@ -296,7 +297,7 @@ to send notifications outside the http request cycle... Anyway...
 Look Ma, I have a friend
 ------------------------
 
-At this point is user is authenticated and his presence channel is working. It's time to show/hide friends
+At this point the user is authenticated and his presence channel is working. It's time to show/hide friends
 and to open a chat box when we click on their nickname.
     
     {% highlight coffeescript%}
@@ -473,8 +474,8 @@ the message when it arrives.
     
 
 
-That's all Folks!
------------------
+Conclusions
+-----------
 
 There's a lot more to say, we still have to see how to use Omniauth to authenticate the user, how to use 
 DelayedJob to fetch friends data in background, how to setup a custom Sprockets without Rails, and the database 
