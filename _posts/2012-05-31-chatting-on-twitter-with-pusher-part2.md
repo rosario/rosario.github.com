@@ -29,7 +29,7 @@ in background.
 Relationship status: It's not complicated
 -----------------------------------------
 
-We use [Datamapper]('http://datamapper.org/' "Datamapper")
+We use [Datamapper](http://datamapper.org/ "Datamapper")
 to write database models. It's relatively easy to use and we don't have to worry about 
 migrations (and that's ok given this simplicity of this project). Documentation is really 
 good, we reuse part of _Self referential many to many relationships_ section in 
@@ -62,8 +62,7 @@ and we add few utility methods.
       def friend?(friend)
         friends.first(:id =>friend.id) or inverse_friends.first(:id=>friend.id)
       end
-
-
+      
       def offline!
         self.online = false
         self.save
