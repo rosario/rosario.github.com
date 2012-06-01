@@ -1,2 +1,5 @@
-pygments: true
+markdown: kramdown
+kramdown: 
+  use_coderay: true
+pygments: false
 safe: true
