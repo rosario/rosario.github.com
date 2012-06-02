@@ -3,11 +3,11 @@ layout: post
 title: Responsive images
 image: ''
 excerpt: |-
-    Mobile phones don't need to download fullsize images. Although responsive images is still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.
+    Mobile phones don't need to download fullsize images. Although responsive images are still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.
 ---
 
 
-### Mobile phones don't need to download fullsize images. Although responsive images is still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.
+### Mobile phones don't need to download fullsize images. Although responsive images are still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.
 
 
 Mobile First
