@@ -32,7 +32,10 @@ pre, tt, code {
   margin-bottom:2em;
 }
 
-
+.center {
+  text-align:center;
+}
+img{margin-bottom:1em;}
 
 
 a, a:visited {color: #CA1911;}

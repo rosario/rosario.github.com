@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Blog of Saro</title>
+	<meta name="description" content="Blog of a software developer living and working in europe">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="/stylesheets/skeleton/base.css">
+	<link rel="stylesheet" href="/stylesheets/skeleton/skeleton.css">
+	<link rel="stylesheet" href="/stylesheets/skeleton/layout.css">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+	<link rel="stylesheet" href="/stylesheets/docco.css">
+	<link rel="stylesheet" href="/stylesheets/styles/googlecode.min.css">
+	<!-- [if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif] -->
+
+	<link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="/javascripts/highlight.pack.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="four columns sidebar">
+			<nav>
+				<h4 id="logo">Blog of Saro</h4>
+				<ul>
+ 					<li><a href="/">Home</a></li>
+					<!-- li><a href="/archive">Archive</a></li> -->
+					<h5> Rosario works and lives in London, he likes Brighton and loves Budapest. </h5>
+					<h5 class="followme">You can follow me here:
+						<a href="https://twitter.com/_sarhus">@_sarhus</a>
+						<img src="/images/followme.png"/>
+					</h5>
+				</ul>
+			</nav>
+
+			&nbsp;
+		</div>
+		<div class="twelve columns content">
+			<h1 class="title">Responsive images</h1>
+<p class="date"> 02 Jun 2012 </p>
+
+<h3>Mobile phones don't need to download fullsize images. Although responsive images is still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.</h3>
+
+<h2>Mobile First</h2>
+
+<p><strong>Mobile First</strong> is the approach proposed by <a href="http://www.lukew.com/" title="Luke Wroblewski">Luke Wroblewski</a>
+in this <a href="http://www.lukew.com/ff/entry.asp?933" title="article">article</a>. Ideally, we should start the design
+and development of mobile websites considering the mobile screen width, and progressively <em>adjusting</em>
+our design to wider screens.</p>
+
+<p>Instead of <strong>gracefully degrading</strong> our website for smaller screen, <em>Mobile First</em> is about
+<strong>gracefully enhancing</strong> our website for larger screens.</p>
+
+<h2>Loading Images using Media Queries</h2>
+
+<p>We can use the same approach also for images. Consider we want to display a small image for our
+mobile website. Instead of starting with a full size image, we start with the mobile image.</p>
+
+<p>Using <strong>&lt;figure></strong> <em>tag</em> in combination with <strong>Media Queries</strong> it's possible to load different
+images depending on the screen width. As I've read somewhere, <strong>first media query is no media query</strong>.
+Instead of using the typical <strong>&lt;img></strong> we can use  <strong>&lt;figure></strong> and setup a background image.</p>
+
+<pre><code>figure{
+  background-image:url('/images/pixar-320.jpg');
+  background-repeat:no-repeat;  
+  width:320px;
+  height:247px;
+}
+</code></pre>
+
+<div class="center">
+  <img src="http://responsive-images.herokuapp.com/images/pixar-320.jpg"/>
+</div>
+
+
+<p>We are instructing the browser to load the <em>320px</em> image, and that's the <strong>default size</strong> outside of
+the media queries definition.</p>
+
+<p>If the mobile is in <strong>landscape</strong> position, we can setup a media query to consider this case:</p>
+
+<pre><code>/* Screen &gt;= 480 */
+@media screen and (min-width:480px){
+  body {
+    width: 480px;
+  }
+  figure{
+    background-image:url('/images/pixar-480.jpg');
+    background-repeat:no-repeat;    
+    width:100%;
+    height:323px;
+  }
+}
+</code></pre>
+
+<div class="center">
+    <img src="http://responsive-images.herokuapp.com/images/pixar-480.jpg"/>
+</div>
+
+
+<p>We can also do the same for Tablets device:</p>
+
+<pre><code>/* Screen &gt;= 768 */
+@media screen and (min-width:768px){
+    body {
+      width: 768px;
+    }
+    figure{
+      background-image:url('/images/pixar-768.jpg');
+      background-repeat:no-repeat;
+      width:100%;
+      height:421px;
+    }    
+}
+</code></pre>
+
+<p>And we could keep adding more media queries:</p>
+
+<pre><code>/* Screen &gt;= 960 */
+@media screen and (min-width:960px){    
+    body {
+      width:960px;
+    }
+    figure{
+      background-image:url('/images/pixar-960.jpg');
+      background-repeat:no-repeat;      
+      width:100%;
+      height:466px;
+    }
+}
+</code></pre>
+
+<h2>Where's the trick?</h2>
+
+<p>This is a proof of concept, but it works nicely for Android or iPhone/iPad devices.
+If the user will load the page in portrait mode (thus 320px), the 480px image is loaded only
+by rotating the mobile in landscape position.</p>
+
+<p>When the mobile is already in landscape position, the mobile will load both images,
+320px and 480px. That's not completely bad, since users tend to swap between portrait
+and landscape most of the time.</p>
+
+<p>The good news is that larger images (768px and 960px) won't be loaded in our mobiles, thus
+saving bandwidth.</p>
+
+<p>Here's a complete example with a <a href="http://responsive-images.herokuapp.com/" title="responsive images demo">responsive images demo</a>
+and here's the <a href="https://github.com/rosario/responsive-images" title="source code">source code</a></p>
+
+
+
+<h2>Archive</h2>
+
+<div id="post_links">
+	<ul>
+		
+			<li><span>02 Jun 2012</span>  <a href="/2012/06/02/responsive-images.html">Responsive images</a></li>
+		
+			<li><span>31 May 2012</span>  <a href="/2012/05/31/chatting-on-twitter-with-pusher-part2.html">Chatting on Twitter (2/2)</a></li>
+		
+			<li><span>19 May 2012</span>  <a href="/2012/05/19/chatting-on-twitter-with-pusher.html">Chatting on Twitter (1/2)</a></li>
+			
+	</ul>
+</div>
+
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'rosario'; 
+		var disqus_developer = 0; // developer mode is on
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+		</div>
+		
+		<!-- <div class="sixteen columns footer"></div> -->
+	</div>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-31897052-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>	
+</body>
+</html>
