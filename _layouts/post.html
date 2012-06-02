@@ -8,16 +8,23 @@ disqus: true
 
 {{ content }}
 
-<p class="comments"> 
-	<a href="{{page.comments_url}}"> Comments on HN </a> 
-</p>
+
+<h2>Archive</h2>
+
+<div id="post_links">
+	<ul>
+		{% for post in site.posts %}
+			<li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}	
+	</ul>
+</div>
 
 {% if page.disqus %}
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
 
 	    var disqus_shortname = 'rosario'; 
-		var disqus_developer = 1; // developer mode is on
+		var disqus_developer = 0; // developer mode is on
 	    (function() {
 	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

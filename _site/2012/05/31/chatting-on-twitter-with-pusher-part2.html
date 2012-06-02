@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="/stylesheets/skeleton/layout.css">
 	<link rel="stylesheet" href="/stylesheets/main.css">
 	<link rel="stylesheet" href="/stylesheets/docco.css">
-	<link rel="stylesheet" href="/stylesheets/googlecode.min.css">
+	<link rel="stylesheet" href="/stylesheets/styles/googlecode.min.css">
 	<!-- [if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif] -->
@@ -59,25 +59,27 @@
 			<h1 class="title">Chatting on Twitter (2/2)</h1>
 <p class="date"> 31 May 2012 </p>
 
-<h3 id="how-to-setup-sprockets-without-rails-self-referencial-association-with-datamapper-delayed-job-for-sinatra">How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.</h3>
+<h3>How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.</h3>
 
-<h2 id="overview">Overview</h2>
+<h2>Overview</h2>
 
-<p>In the previous post, we have seen how to embed a chat widget with Coffescript. 
-We mainly covered javascript events sent from the server to the clients using 
-<a href="http://www.pusher.com" title="pusher">pusher</a>. In this post we will see how to setup 
-Sprockets without Rails,  we’ll cover self referential associations for friendship
-relations, and finally we’ll setup Delayed Job with Sinatra to fetch user’s friends
+<p>In the <a href="/2012/05/19/Chatting-on-twitter-with-pusher.html" title="previous post">previous post</a>, we have seen how to embed a chat widget with Coffescript.
+We mainly covered javascript events sent from the server to the clients using
+<a href="http://www.pusher.com" title="pusher">pusher</a>. In this post we will see how to setup
+Sprockets without Rails,  we'll cover self referential associations for friendship
+relations, and finally we'll setup Delayed Job with Sinatra to fetch user's friends
 in background.</p>
 
-<h2 id="sprockets-without-rails">Sprockets without Rails</h2>
+<p>Source code can be found here: <a href="https://github.com/rosario/qop" title="qop source">qop source</a></p>
 
-<p>Sprockets is a utility to compile coffescript/javascript and stylesheets. It’s very useful when we write 
-lots of javascript and we need a way to package all the files in a single <em>application.js</em>. It also 
+<h2>Sprockets without Rails</h2>
+
+<p>Sprockets is a utility to compile coffescript/javascript and stylesheets. It's very useful when we write
+lots of javascript and we need a way to package all the files in a single <em>application.js</em>. It also
 supports <em>ECO</em> templates and automatically creates a global variable to store our javascript templates.</p>
 
 <p>Blatantly taken from <a href="http://www.simonecarletti.com/blog/2011/09/using-sprockets-without-a-railsrack-project/" title="sprockets without rails">sprockets without rails</a>
-courtesy of <a href="http://www.simonecarletti.com/" title="Simone Carletti">Simone Carletti</a>, there is an effective 
+courtesy of <a href="http://www.simonecarletti.com/" title="Simone Carletti">Simone Carletti</a>, there is an effective
 way to setup Sprockets without Rails. The following code goes in a <strong>Rakefile.rb</strong>.</p>
 
 <pre><code>  require 'rubygems'
@@ -101,28 +103,28 @@ way to setup Sprockets without Rails. The following code goes in a <strong>Rakef
     sprockets = Sprockets::Environment.new(ROOT) do |env|
       env.logger = LOGGER
     end
-  
+
     sprockets.append_path(SOURCE_DIR.join('javascripts').to_s)
     sprockets.append_path(SOURCE_DIR.join('templates').to_s)
     sprockets.append_path(SOURCE_DIR.join('stylesheets').to_s)
-  
+
     BUNDLES.each do |bundle|
       assets = sprockets.find_asset(bundle)
       prefix, basename = assets.pathname.to_s.split('/')[-2..-1]
       FileUtils.mkpath BUILD_DIR.join(prefix)
-    
+
       assets.to_a.each do |asset|
         # strip filename.css.foo.bar.css multiple extensions
         realname = asset.pathname.basename.to_s.split(".")[0..1].join(".")
         asset.write_to(BUILD_DIR.join(prefix, realname))
       end
-    
+
       assets.write_to(BUILD_DIR.join(prefix, basename))
     end
   end
 </code></pre>
 
-<p>It is also useful to automatically save and compile javascript files without manually running rake tasks. 
+<p>It is also useful to automatically save and compile javascript files without manually running rake tasks.
 To do so, we setup a <strong>watchr</strong> file, and install the gem <a href="https://github.com/mynyml/watchr" title="watchr">watchr</a>.</p>
 
 <pre><code>  def run_sprockets
@@ -136,12 +138,11 @@ To do so, we setup a <strong>watchr</strong> file, and install the gem <a href="
   watch( 'assets/templates/*') { run_sprockets}
 </code></pre>
 
-<h2 id="relationship-status-its-not-complicated">Relationship status: It’s not complicated</h2>
+<h2>Relationship status: It's not complicated</h2>
 
-<p>We use <a href="http://datamapper.org/" title="Datamapper">Datamapper</a>
-to write database models. It’s relatively easy to use and we don’t have to worry about 
-migrations (and that’s ok given this simplicity of this project). Documentation is really 
-good, we reuse part of <em>Self referential many to many relationships</em> section in 
+<p>We use <a href="http://datamapper.org/" title="Datamapper">Datamapper</a> for out database models. It's easy to use and
+we don't have to worry about migrations (and that's ok given this simplicity of this project). Documentation
+is really good, we reuse part of <em>Self referential many to many relationships</em> section in
 <a href="http://datamapper.org/docs/associations.html" title="Associations">Associations</a>
 and we add few utility methods.</p>
 
@@ -189,20 +190,19 @@ and we add few utility methods.</p>
   end
 </code></pre>
 
-<p>We have added <strong>online</strong> and <strong>offline</strong> methods, a method to get online friends and 
-the <em>inverse_friendship</em> relation. If user <em>A</em> is friend with user <em>B</em>, then it means <em>B</em> is also 
-friend with <em>A</em>. We store this relation only once in the <strong>Friendship</strong> table and use the inverse 
+<p>We have added <strong>online</strong> and <strong>offline</strong> methods, a method to get online friends and
+the <em>inverse_friendship</em> relation. If user <em>A</em> is friend with user <em>B</em>, then it means <em>B</em> is also
+friend with <em>A</em>. We store this relation only once in the <strong>Friendship</strong> table and use the inverse
 friendship relation.</p>
 
-<h2 id="omniauth-for-twitter-using-sinatra">Omniauth for Twitter using Sinatra</h2>
+<h2>Omniauth Twitter strategy using Sinatra</h2>
 
-<p><a href="https://github.com/intridea/omniauth" title="Omniauth">Omniauth</a> makes it very easy to authenticate with Twitter. 
+<p><a href="https://github.com/intridea/omniauth" title="Omniauth">Omniauth</a> makes it very easy to authenticate with Twitter.
 We just need to provide a callback method, and store the user informations.</p>
 
 <pre><code>  get '/auth/twitter/callback' do
 
     auth = request.env["omniauth.auth"]
-
     user = User.first_or_create({ :uid =&gt; auth["uid"]}, {
       :uid =&gt; auth["uid"],
       :nickname =&gt; auth["info"]["nickname"],
@@ -216,22 +216,20 @@ We just need to provide a callback method, and store the user informations.</p>
     end
 
     if user and user.nickname and user.friends.empty?
-      puts "User #{user.nickname} - Getting Friends"
       job = LookupFriends.new(user.nickname)
       Delayed::Job.enqueue job
     end
     session[:user_id] = user.id
-
     redirect 'https://twitter.com'
   end
 </code></pre>
 
-<h2 id="sinatra-and-delayed-job">Sinatra and Delayed Job</h2>
+<h2>Sinatra and Delayed Job</h2>
 
-<p>In the previous code snippet we use <em>Delayed Job</em> to fetch out first friends list. To setup 
-<a href="https://github.com/collectiveidea/delayed_job" title="delayed job">delayed job</a> 
-with Sinatra is a piece of cake. We need to define few <em>tasks</em> in our <em>Rakefile.rb</em>. Note that the following 
-task are useful when we deploy the code to <a href="http://www.heroku.com" title="heroku">heroku</a>.</p>
+<p>In the previous code snippet we use <em>Delayed Job</em> to fetch our friends. We need to setup
+<a href="https://github.com/collectiveidea/delayed_job" title="delayed job">delayed job</a>
+with Sinatra and define a couple of <em>tasks</em> to start and clear the job queue in our <em>Rakefile.rb</em>.
+Note that the following  tasks are useful when we deploy the code to <a href="http://www.heroku.com" title="heroku">heroku</a>.</p>
 
 <pre><code>  task :environment do
     require 'delayed_job'
@@ -248,7 +246,7 @@ task are useful when we deploy the code to <a href="http://www.heroku.com" title
     task :clear =&gt; :environment do
       Delayed::Job.delete_all
     end
-  
+
     desc "Start a delayed_job worker."
     task :work =&gt; :environment do
       Delayed::Worker.new(
@@ -258,7 +256,7 @@ task are useful when we deploy the code to <a href="http://www.heroku.com" title
   end
 </code></pre>
 
-<p>Delayed Job is now ready fetch users from Twitter, here it is how we do it:</p>
+<p>Delayed Job is now ready. We need to setup the actual <em>worker</em>:</p>
 
 <pre><code>  class LookupFriends &lt; Struct.new(:nickname)
 
@@ -276,27 +274,36 @@ task are useful when we deploy the code to <a href="http://www.heroku.com" title
   end
 </code></pre>
 
-<h2 id="conclusions">Conclusions</h2>
+<h2>Conclusions</h2>
 
-<p>In the previous post we’ve seen how to embed a chat widget inside a Twitter page, 
-using pusher and CORS requests. Behind the scenes though there are few tricks to talk about. The widgets
-is a coffescript <em>single page</em> mini application. To glue Coffescript files together Sprockets is
-an important tool. The database used is quite simple, and it’s necessary to check for
-online or offline users. Finally, we’ve seen how to setup Delayed Job to fetch data in background,
-and populate the database with <em>friends</em> data.</p>
+<p>In the previous post we've seen how to embed a chat widget inside a Twitter page,
+using pusher and CORS requests.</p>
+
+<p>Behind the scenes though there are few tricks to talk about. The widgets is a coffescript <em>single page</em>
+mini application. Sprockets is an important tool to glue Coffescript files together. The database used
+is  necessary to check for online or offline users. Finally, we've seen how to setup Delayed Job to
+fetch data in background, and populate the database with <em>friends</em> data.</p>
 
 
 
-<p class="comments"> 
-	<a href=""> Comments on HN </a> 
-</p>
+<h2>Archive</h2>
+
+<div id="post_links">
+	<ul>
+		
+			<li><span>31 May 2012</span>  <a href="/2012/05/31/Chatting-on-twitter-with-pusher-part2.html">Chatting on Twitter (2/2)</a></li>
+		
+			<li><span>19 May 2012</span>  <a href="/2012/05/19/Chatting-on-twitter-with-pusher.html">Chatting on Twitter (1/2)</a></li>
+			
+	</ul>
+</div>
 
 
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
 
 	    var disqus_shortname = 'rosario'; 
-		var disqus_developer = 1; // developer mode is on
+		var disqus_developer = 0; // developer mode is on
 	    (function() {
 	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

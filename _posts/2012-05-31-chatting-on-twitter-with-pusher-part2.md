@@ -2,10 +2,8 @@
 layout: post
 title: Chatting on Twitter (2/2)
 image: ''
-comments_url: ""
 excerpt: |-
     How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.
-
 ---
 
 
@@ -16,13 +14,14 @@ Overview
 --------
 
 
-In the previous post, we have seen how to embed a chat widget with Coffescript. 
+In the [previous post](/2012/05/19/Chatting-on-twitter-with-pusher.html "previous post"), we have seen how to embed a chat widget with Coffescript. 
 We mainly covered javascript events sent from the server to the clients using 
 [pusher](http://www.pusher.com "pusher"). In this post we will see how to setup 
 Sprockets without Rails,  we'll cover self referential associations for friendship
 relations, and finally we'll setup Delayed Job with Sinatra to fetch user's friends
 in background.
 
+Source code can be found here: [qop source](https://github.com/rosario/qop "qop source")
 
 Sprockets without Rails
 -----------------------
@@ -99,10 +98,9 @@ To do so, we setup a **watchr** file, and install the gem [watchr](https://githu
 Relationship status: It's not complicated
 -----------------------------------------
 
-We use [Datamapper](http://datamapper.org/ "Datamapper")
-to write database models. It's relatively easy to use and we don't have to worry about 
-migrations (and that's ok given this simplicity of this project). Documentation is really 
-good, we reuse part of _Self referential many to many relationships_ section in 
+We use [Datamapper](http://datamapper.org/ "Datamapper") for out database models. It's easy to use and 
+we don't have to worry about migrations (and that's ok given this simplicity of this project). Documentation 
+is really good, we reuse part of _Self referential many to many relationships_ section in 
 [Associations](http://datamapper.org/docs/associations.html "Associations")
 and we add few utility methods.
 
@@ -158,7 +156,7 @@ friendship relation.
 
 
 
-Omniauth for Twitter using Sinatra
+Omniauth Twitter strategy using Sinatra
 ----------------------------------
 
 [Omniauth](https://github.com/intridea/omniauth "Omniauth") makes it very easy to authenticate with Twitter. 
@@ -167,7 +165,6 @@ We just need to provide a callback method, and store the user informations.
       get '/auth/twitter/callback' do
     
         auth = request.env["omniauth.auth"]
-    
         user = User.first_or_create({ :uid => auth["uid"]}, {
           :uid => auth["uid"],
           :nickname => auth["info"]["nickname"],
@@ -181,12 +178,10 @@ We just need to provide a callback method, and store the user informations.
         end
     
         if user and user.nickname and user.friends.empty?
-          puts "User #{user.nickname} - Getting Friends"
           job = LookupFriends.new(user.nickname)
           Delayed::Job.enqueue job
         end
         session[:user_id] = user.id
-    
         redirect 'https://twitter.com'
       end
 
@@ -195,10 +190,10 @@ We just need to provide a callback method, and store the user informations.
 Sinatra and Delayed Job
 -----------------------
 
-In the previous code snippet we use _Delayed Job_ to fetch out first friends list. To setup 
+In the previous code snippet we use _Delayed Job_ to fetch our friends. We need to setup 
 [delayed job](https://github.com/collectiveidea/delayed_job "delayed job") 
-with Sinatra is a piece of cake. We need to define few _tasks_ in our _Rakefile.rb_. Note that the following 
-task are useful when we deploy the code to [heroku](http://www.heroku.com "heroku").
+with Sinatra and define a couple of _tasks_ to start and clear the job queue in our _Rakefile.rb_. 
+Note that the following  tasks are useful when we deploy the code to [heroku](http://www.heroku.com "heroku").
 
       task :environment do
         require 'delayed_job'
@@ -226,7 +221,7 @@ task are useful when we deploy the code to [heroku](http://www.heroku.com "herok
     
 
 
-Delayed Job is now ready fetch users from Twitter, here it is how we do it:
+Delayed Job is now ready. We need to setup the actual _worker_:
 
 
       class LookupFriends < Struct.new(:nickname)
@@ -254,11 +249,12 @@ Conclusions
 -----------
 
 In the previous post we've seen how to embed a chat widget inside a Twitter page, 
-using pusher and CORS requests. Behind the scenes though there are few tricks to talk about. The widgets
-is a coffescript _single page_ mini application. To glue Coffescript files together Sprockets is
-an important tool. The database used is quite simple, and it's necessary to check for
-online or offline users. Finally, we've seen how to setup Delayed Job to fetch data in background,
-and populate the database with _friends_ data.
+using pusher and CORS requests. 
+
+Behind the scenes though there are few tricks to talk about. The widgets is a coffescript _single page_ 
+mini application. Sprockets is an important tool to glue Coffescript files together. The database used 
+is  necessary to check for online or offline users. Finally, we've seen how to setup Delayed Job to 
+fetch data in background, and populate the database with _friends_ data.
 
 
 

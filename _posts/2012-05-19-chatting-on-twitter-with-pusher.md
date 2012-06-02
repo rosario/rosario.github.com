@@ -2,7 +2,6 @@
 layout: post
 title: Chatting on Twitter (1/2)
 image: '/images/screenshot.png'
-comments_url: "http://news.ycombinator.com/item?id=3998828"
 excerpt: |-
     Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
 ---
@@ -13,17 +12,18 @@ excerpt: |-
 ![qop chat](/images/screenshot.png "qop chat screenshot")
 
 
-Overview: qop qop qop test
+Overview: qop qop qop 
 --------
 
 This is a short description of **qop**, a simple and unpretentious chat widget written in Ruby and Coffeescript.
 It uses [Pusher](http://pusher.com/ "Pusher") to send chat messages to our  [Twitter](http://twitter.com/ "Twitter") 
-friends, and it can be embedded on a Twitter page.
+friends, and it can be embedded on a Twitter page. 
+
+Source code can be found here: [qop source](https://github.com/rosario/qop "qop source")
 
 The technical part: Web services are provided with Sinatra. Authentication is done via Omniauth. Data models 
-are written in Datamapper, and Handlebars is used for templates. 
-
-Finally a custom Sprockets process will glue everything together. As easy as that!
+are written in Datamapper, and Handlebars is used for templates. Finally a custom Sprockets process will glue 
+everything together. As easy as that!
 
 
 ![qop chat](/images/qop2.png "qop drawing")
@@ -34,20 +34,20 @@ The bookmarklet
 
 The bookmarklet loads the widget from our server, and this is the code:
 
+    
+      (function(){
+        link = document.createElement('link');
+        link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        document.getElementsByTagName('head')[0].appendChild(link);
 
-    (function(){
-      link = document.createElement('link');
-      link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
-      link.type = 'text/css';
-      link.rel = 'stylesheet';
-      document.getElementsByTagName('head')[0].appendChild(link);
-
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
-      document.getElementsByTagName('head')[0].appendChild(script);
-    })();
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      })();
 
 
 
@@ -62,25 +62,25 @@ Loading, please wait
 We load jQuery and wait until is ready to be used. We also need to load Pusher library, and finally load **qop**.
 
 
-    
-     done = false
+      # Load jQuery
+      done = false
       script = document.createElement('script')
       script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-      
+
       script.onload = script.onreadystatechange = ->
         if (!done and (!@readyState or @readyState =='loaded' or @readyState =='complete'))
           done = true
-          
+          # Assign jQuery to a local namespace
           window.qop$ = jQuery.noConflict();
           window.qop$.support.cors = true
-          
+          # Load Pusher library
           qop$.getScript("https://d3dy5gmtp8yhk7.cloudfront.net/1.11/pusher.min.js")
             .done (script) ->
               console.log 'loading app...'
               app = new QoP.App()
             .fail (jqxhr, settings, exception) ->
               console.log 'failed'
-              
+        
       document.getElementsByTagName('head')[0].appendChild(script)
 
 
@@ -89,13 +89,16 @@ We load jQuery and wait until is ready to be used. We also need to load Pusher l
 The **App** class doesn't do much, just initialise Pusher with the right credentials, and creates the contact list.
 
 
-    class QoP.App
-      constructor: ->
-        qop$("<div id='qop'></div>").appendTo 'body'
-        Pusher.channel_auth_endpoint = 'https://YOURQOPSERVER.herokuapp.com/pusher/auth'
-        Pusher.channel_auth_transport = 'jsonp'
-        QoP.pusher = new Pusher 'APPKEY'
-        contacts = new QoP.Contacts('contact_list', 'Contact List')
+      class QoP.App
+        constructor: ->
+          # Attach the widget to the page
+          qop$('<div id="qop"></div>').appendTo 'body'
+          # Setup Pusher
+          Pusher.channel_auth_endpoint = 'https://YOURQOPSERVER.herokuapp.com/pusher/auth'
+          Pusher.channel_auth_transport = 'jsonp'
+          QoP.pusher = new Pusher 'APPKEY'
+          #Load the contact list
+          contacts = new QoP.Contacts('contact_list', 'Contact List')
 
 
 
@@ -417,7 +420,7 @@ We also need to subscribe the users to the new channel.
         @channel.bind 'pusher:subscription_error', console.log('User already subscribed')
         @channel.bind 'new_message', @messageReceived
       @channel
-    {% endhighlight%}
+
 
 
 
