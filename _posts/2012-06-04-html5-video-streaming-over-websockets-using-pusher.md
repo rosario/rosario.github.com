@@ -15,7 +15,7 @@ Overview
 --------
 
 There's a new feature in the latest Chrome browser's (Chrome 18 and 19, and Canary 21) called **getUserMedia**.
-It's still an experimental feature and it's hidden in _chrome://flags_
+It's still an experimental feature and it's hidden behind _chrome://flags_
 
 > **Enable Media Source API on \<video\> elements.**
   Enable experimental Media Source API on the video elements. This API allows JavaScript to send media data directly to a video element.
@@ -36,7 +36,7 @@ using websockets.
 
 
 <div class="center">
-  <img src="/images/pusher-logo.png">
+  <img src="/images/pusher-logo.png" alt="pusher logo">
 </div>
 
 The following code is written in _Coffescript_. We tell our server to render two pages, __stream__ is used

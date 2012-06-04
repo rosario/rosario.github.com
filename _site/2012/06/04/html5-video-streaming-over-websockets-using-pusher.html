@@ -64,7 +64,7 @@
 <h2>Overview</h2>
 
 <p>There's a new feature in the latest Chrome browser's (Chrome 18 and 19, and Canary 21) called <strong>getUserMedia</strong>.
-It's still an experimental feature and it's hidden in <em>chrome://flags</em></p>
+It's still an experimental feature and it's hidden behind <em>chrome://flags</em></p>
 
 <blockquote><p><strong>Enable Media Source API on &lt;video> elements.</strong>
   Enable experimental Media Source API on the video elements. This API allows JavaScript to send media data directly to a video element.</p></blockquote>
@@ -80,7 +80,7 @@ note on <a href="http://pusher.com/docs/pipe" title="pusher pipe">pusher pipe</a
 using websockets.</p>
 
 <div class="center">
-  <img src="/images/pusher-logo.png">
+  <img src="/images/pusher-logo.png" alt="pusher logo">
 </div>
 
 
@@ -245,7 +245,7 @@ by binding the <em>@mirror</em> channel to the <em>frame</em> event.</p>
 </code></pre>
 
 <p>The <strong>getUserMedia</strong> is a wrapper around webkitGetUserMedia. We need it because Chrome 18/19  and Chrome 21
-have a  slightly different syntax.</p>
+have a slightly different syntax.</p>
 
 <p>After the user clicks the button, we start a timer and we refresh the image taken from the video and send
 this data to the <em>@channel</em>.</p>
@@ -255,7 +255,7 @@ this data to the <em>@channel</em>.</p>
 <p>The first problem lies in the way images are encoded, they are Base64 images. Ideally we could send
 binary data over a websocket. Pusher also has a rate limit on the number of messages per second.</p>
 
-<p>Can we use websockets for video streaming? No with this setup, after all it was just an experiment.</p>
+<p>Can we use websockets for video streaming? Not with this setup, after all it was just an experiment.</p>
 
 <h2>Source Code and Credits</h2>
 
