@@ -200,7 +200,7 @@ We use two buttons, one to start the streaming, and one to stop it. The coffescr
            console.log 'Error with getUserMedia()'
          
 The **getUserMedia** is a wrapper around webkitGetUserMedia. We need it because Chrome 18/19  and Chrome 21 
-have a  slightly different syntax.
+have a slightly different syntax.
 
 After the user clicks the button, we start a timer and we refresh the image taken from the video and send
 this data to the _@channel_.
@@ -212,7 +212,7 @@ Fin
 The first problem lies in the way images are encoded, they are Base64 images. Ideally we could send 
 binary data over a websocket. Pusher also has a rate limit on the number of messages per second.
 
-Can we use websockets for video streaming? No with this setup, after all it was just an experiment.
+Can we use websockets for video streaming? Not with this setup, after all it was just an experiment.
 
 
 Source Code and Credits
