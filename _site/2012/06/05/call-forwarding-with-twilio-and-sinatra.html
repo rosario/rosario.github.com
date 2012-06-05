@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Blog of Saro</title>
+	<meta name="description" content="Blog of a software developer living and working in europe">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="/stylesheets/skeleton/base.css">
+	<link rel="stylesheet" href="/stylesheets/skeleton/skeleton.css">
+	<link rel="stylesheet" href="/stylesheets/skeleton/layout.css">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+	<link rel="stylesheet" href="/stylesheets/docco.css">
+	<link rel="stylesheet" href="/stylesheets/styles/googlecode.min.css">
+	<!-- [if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif] -->
+
+	<link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="/javascripts/highlight.pack.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="four columns sidebar">
+			<nav>
+				<h4 id="logo">Blog of Saro</h4>
+				<ul>
+ 					<li><a href="/">Home</a></li>
+					<!-- li><a href="/archive">Archive</a></li> -->
+					<h5> Rosario works and lives in London, he likes Brighton and loves Budapest. </h5>
+					<h5 class="followme">You can follow me here:
+						<a href="https://twitter.com/_sarhus">@_sarhus</a>
+						<img src="/images/followme.png"/>
+					</h5>
+				</ul>
+			</nav>
+
+			&nbsp;
+		</div>
+		<div class="twelve columns content">
+			<h1 class="title">Call Forwarding with Twilio and Sinatra</h1>
+<p class="date"> 05 Jun 2012 </p>
+
+<h3>Let's see how to setup call fowarding using <strong>Twilio</strong> and Sinatra. The application can be hosted on <strong>Heroku</strong>.</h3>
+
+<div class="center">
+  <img src="/images/telefono.png" alt="phone">
+</div>
+
+
+<h2>Overview</h2>
+
+<p>Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could
+be different reasons why you'd want to have another phone number, without having to carry a physical phone.</p>
+
+<p>A typical case is when you submit your CV to websites. Instead of giving away your mobile number, you
+could buy a number from <a href="http://twilio.com" title="Twilio">Twilio</a>, create a micro application hosted for free on
+heroku, and let Twilio redirect those calls to your mobile number.</p>
+
+<h2>You talkin' to ME ?!?</h2>
+
+<p>Twilio uses <a href="http://www.twilio.com/docs/api/twiml" title="TWIML">TWIML</a>, a markup language that describes operations like <strong>DIAL</strong> or <strong>REJECT</strong>.</p>
+
+<p>When somebody calls our virtual phone number, Twilio will make a <em>POST</em> request to our server. We return some TWIML
+instructing Twilio to forward that call to our personal (mobile or landline) phone:</p>
+
+<pre><code>  post '/:twilio_number' do
+    if @account and @account.forward_number
+      # Dial phone number
+      builder do |xml|
+        xml.instruct!
+        xml.Response do
+            xml.Dial @account.forward_number,
+              :action =&gt;"/call_status/#{params[:twilio_number]}"
+        end  
+      end
+    else
+      # Reject the call, the number is not active
+      builder do |xml|
+        xml.Response do
+          xml.Reject
+        end
+      end
+    end
+  end
+</code></pre>
+
+<p>Note, this <strong>POST</strong> request is made by Twilio to our server. We need to configure our Twilio Account and
+associate an <em>URL</em> with our virtual phone number.</p>
+
+<p>The following <strong>action</strong> is executed when the phone hangs up, we just instruct Twilio to close the call:</p>
+
+<pre><code>  post '/call_status/:twilio_number' do
+    builder do |xml|
+      xml.instruct!
+      xml.Response do
+        xml.Reject
+      end
+    end
+  end
+</code></pre>
+
+<h2>Logging</h2>
+
+<p>We can use a database to log calls too, and it's quite easy to setup with <strong>Datamapper</strong> and Sinatra.
+Here's a simple database model:</p>
+
+<pre><code>  class Account
+    include DataMapper::Resource
+    property :id,             Serial
+    property :email,          String
+    property :twilio_number,  String
+    property :forward_number, String
+    property :created_at,     DateTime
+    has n, :calls
+  end
+
+
+  class Call
+    include DataMapper::Resource
+    property :id,                 Serial
+    property :account_sid,        String
+    property :to_zip,             String
+    property :to_city,            String
+    property :to_state,           String
+    property :to_country,         String
+    property :called_zip,         String
+    property :called_city,        String
+    property :called_country,     String
+    property :called_state,       String
+    property :call_status,        String
+    property :call_sid,           String
+    property :called,             String
+    property :from,               String
+    property :to,                 String
+    property :caller,             String
+    property :dial_call_duration, Integer, :default =&gt; 0
+    property :dial_call_status,   String
+    property :dial_call_sid,      String
+    property :direction,          String
+    property :api_version,        String
+    belongs_to :account
+  end
+</code></pre>
+
+<p>Twilio provides the details of who's calling, from where and other useful infos. We can grab this informations
+for each request, with a <strong>before</strong> filter in Sinatra:</p>
+
+<pre><code>  before do
+    if params["To"] and params["AccountSid"] and params["CallStatus"]
+      call = Call.new({    
+        :account_sid =&gt;   params["AccountSid"],
+        :call_status =&gt;   params["CallStatus"],
+        :to_zip =&gt;        params["ToZip"],
+        :to_city =&gt;       params["ToCity"],
+        :to_state =&gt;      params["ToState"],
+        :called =&gt;        params["Called"],
+        :to =&gt;            params["To"],
+        :to_country =&gt;    params["ToCountry"],
+        :called_zip =&gt;    params["CalledZip"],
+        :direction =&gt;     params["Direction"],
+        :api_version =&gt;   params["ApiVersion"],
+        :caller =&gt;        params["Caller"],
+        :called_city =&gt;   params["CalledCity"],
+        :called_country =&gt;      params["CalledCountry"],
+        :dial_call_duration =&gt;  params["DialCallDuration"].to_i || 0,
+        :dial_call_status =&gt;    params["DialCallStatus"] || "",
+        :dial_call_sid =&gt;       params["DialCallSid"] || "",
+        :call_sid =&gt;      params["CallSid"],
+        :called_state =&gt;  params["CalledState"],
+        :from =&gt;          params["From"]
+      })
+      account = Account.first(:twilio_number=&gt;call.to)
+      account.calls &lt;&lt; call
+      account.save
+      call.save
+      @account = account
+    end
+  end
+</code></pre>
+
+<h2>Conclusion</h2>
+
+<p>It's easy, really easy to setup a simple call forwarding service with Twilio. When we get tired of receiving calls
+we can always disable the virtual phone number, hassle free.</p>
+
+<p>Source code can be found here: <a href="https://github.com/rosario/callforwarding" title="callforwarding">callforwarding</a></p>
+
+
+
+<h2>Archive</h2>
+
+<div id="post_links">
+	<ul>
+		
+			<li><span>05 Jun 2012</span>  <a href="/2012/06/05/call-forwarding-with-twilio-and-sinatra.html">Call Forwarding with Twilio and Sinatra</a></li>
+		
+			<li><span>04 Jun 2012</span>  <a href="/2012/06/04/html5-video-streaming-over-websockets-using-pusher.html">HTML5 Video Streaming over WebSockets using Pusher</a></li>
+		
+			<li><span>02 Jun 2012</span>  <a href="/2012/06/02/responsive-images.html">Responsive images</a></li>
+		
+			<li><span>31 May 2012</span>  <a href="/2012/05/31/chatting-on-twitter-with-pusher-part2.html">Chatting on Twitter (2/2)</a></li>
+		
+			<li><span>19 May 2012</span>  <a href="/2012/05/19/chatting-on-twitter-with-pusher.html">Chatting on Twitter (1/2)</a></li>
+			
+	</ul>
+</div>
+
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'rosario'; 
+		var disqus_developer = 0; // developer mode is on
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+		</div>
+		
+		<!-- <div class="sixteen columns footer"></div> -->
+	</div>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-31897052-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>	
+</body>
+</html>
