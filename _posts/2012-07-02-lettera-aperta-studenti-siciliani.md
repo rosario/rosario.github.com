@@ -13,7 +13,7 @@ Lavoro come freelancer, la moderna versione del mercenario informatico. Non ho u
 stabilito, spesso dalle 9 alle 6, ma lavoro la domenica se posso, e rimango a casa il lunedi se ho voglia. 
 Non vivo sempre nello stesso posto, sono nomade per scelta.
 
-Sapete perchè vi scrivo? Perchè andare a lavorare subito dopo la laurea non è la scelta giusta.
+Sapete perché vi scrivo? Perché andare a lavorare subito dopo la laurea non è la scelta giusta.
 Se qualcuno vi offre un lavoro, **non accettatelo**.
 
 Studiate
@@ -28,7 +28,7 @@ Parlate col vostro collega, convincetelo a non lavorare, almeno per un altro ann
 tecnologie che rendono USA e UK le nazioni che creano i vari facebook, twitter, instagram, foursquare, airbnb,
 hipmunk ecc ecc.
 
-Perchè una startup? Perchè potete essere padroni delle vostre scelte, perchè siete stati educati 
+Perché una startup? Perché potete essere padroni delle vostre scelte, perché siete stati educati 
 per diventare creatori di tecnologia non forza da lavoro da cubicolo.
 
 ### Fate un favore a voi stessi, non andate a lavorare subito dopo la laurea, fate partire una startup, la **vostra startup**.
