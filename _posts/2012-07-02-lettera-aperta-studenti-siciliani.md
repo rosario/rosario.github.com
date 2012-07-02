@@ -10,11 +10,11 @@ excerpt: |- Non andate a lavorare. Dopo la laurea, studiate quello che vi serve 
 
 Mi chiamo Rosario, e siciliano sono. Mi sono laureato in Informatica a Catania ma vivo da tempo lontano dalla Sicilia.
 Lavoro come freelancer, la moderna versione del mercenario informatico. Non ho un capo, ma clienti. Non ho un orario di ufficio
-stabilito,spesso dalle 9 alle 6, ma lavoro la domenica se posso, e rimango a casa il lunedi se ho voglia. 
+stabilito, spesso dalle 9 alle 6, ma lavoro la domenica se posso, e rimango a casa il lunedi se ho voglia. 
 Non vivo sempre nello stesso posto, sono nomade per scelta.
 
 Sapete perchè vi scrivo? Perchè andare a lavorare subito dopo la laurea non è la scelta giusta.
-Se qualcuno vi offre un lavoro, non accettatelo.
+Se qualcuno vi offre un lavoro, **non accettatelo**.
 
 Studiate
 --------
