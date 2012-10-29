@@ -56,114 +56,78 @@
 			&nbsp;
 		</div>
 		<div class="twelve columns content">
-			<h1 class="title">Responsive images</h1>
-<p class="date"> 02 Jun 2012 </p>
+			<h1 class="title">Chatting on Last.fm using websockets</h1>
+<p class="date"> 29 Oct 2012 </p>
 
-<h3>Mobile phones don't need to download fullsize images. Although responsive images are still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.</h3>
+<h3>Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.</h3>
 
-<h2>Mobile First</h2>
+<p><img src="/images/qop-lastfm.png" title="qop chat screenshot" alt="qop chat" /></p>
 
-<p><strong>Mobile First</strong> is the approach proposed by <a href="http://www.lukew.com/" title="Luke Wroblewski">Luke Wroblewski</a>
-in this <a href="http://www.lukew.com/ff/entry.asp?933" title="article">article</a>. Ideally, we should start the design
-and development of mobile websites considering the mobile screen width, and progressively <em>adjusting</em>
-our design to wider screens.</p>
+<h2>The hack</h2>
 
-<p>Instead of <strong>gracefully degrading</strong> our website for smaller screen, <em>Mobile First</em> is about
-<strong>gracefully enhancing</strong> our website for larger screens.</p>
+<p>As shown before, it's relatively easy to embed a <a href="/2012/05/19/chatting-on-twitter-with-pusher.html">chat box on twitter</a>.
+Doing the same for <a href="http://last.fm">last.fm</a> is trivial. First, we need to add <em>omniauth_lastfm</em> in the <em>Gemfile</em> of our Sinatra app.</p>
 
-<h2>Loading Images using Media Queries</h2>
+<pre><code>gem 'omniauth-lastfm'
+</code></pre>
 
-<p>We can use the same approach also for images. Consider we want to display a small image for our
-mobile website. Instead of starting with a full size image, we start with the mobile image.</p>
+<p>We need to add also the <em>require</em> in the app file:</p>
 
-<p>Using <strong>&lt;figure></strong> <em>tag</em> in combination with <strong>Media Queries</strong> it's possible to load different
-images depending on the screen width. As I've read somewhere, <strong>first media query is no media query</strong>.
-Instead of using the typical <strong>&lt;img></strong> we can use  <strong>&lt;figure></strong> and setup a background image.</p>
+<pre><code>require 'omniauth-lastfm'
+</code></pre>
 
-<pre><code>figure{
-  background-image:url('/images/pixar-320.jpg');
-  background-repeat:no-repeat;  
-  width:320px;
-  height:247px;
+<p>Now we have to define the OAuth callback for Lastfm:</p>
+
+<pre><code>get '/auth/lastfm/callback' do
+  auth = request.env["omniauth.auth"]
+
+  user = User.first_or_create({ :uid =&gt; auth["uid"]}, {
+    :uid =&gt; auth["uid"],
+    :name =&gt; auth["info"]["name"],
+    :nickname =&gt; auth["info"]["name"],
+    :created_at =&gt; Time.now })
+
+  session[:user_id] = user.id # User logged in
+  redirect 'http://last.fm'
+end
+</code></pre>
+
+<h2>Chrome Extension</h2>
+
+<p>We add a <strong>Chrome Extension</strong> that automatically loads up the javascript and opens the chat box. The <em>manifest.json</em> is:</p>
+
+<pre><code>{
+   "content_scripts": [ {
+      "js": [ "qop.js" ],
+      "matches": [ "http://*.last.fm/*", "https://*.last.fm/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "Last.fm Chat",
+   "name": "qop.im",
+   "version": "1.0",
+   "manifest_version": 2
 }
 </code></pre>
 
-<div class="center">
-  <img src="http://responsive-images.herokuapp.com/images/pixar-320.jpg"/>
-</div>
+<p>And the <strong>qop.js</strong> is:</p>
 
-
-<p>We are instructing the browser to load the <em>320px</em> image, and that's the <strong>default size</strong> outside of
-the media queries definition.</p>
-
-<p>If the mobile is in <strong>landscape</strong> position, we can setup a media query to consider this case:</p>
-
-<pre><code>/* Screen &gt;= 480 */
-@media screen and (min-width:480px){
-  body {
-    width: 480px;
-  }
-  figure{
-    background-image:url('/images/pixar-480.jpg');
-    background-repeat:no-repeat;    
-    width:100%;
-    height:323px;
-  }
+<pre><code>if (window.top === window) {
+    (function(){
+        link = document.createElement('link');
+        link.href = 'http://YOURSERVER/application.css';
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        document.getElementsByTagName('head')[0].appendChild(link);
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'http://YOURSERVER/application.js';
+        document.getElementsByTagName('head')[0].appendChild(script);})();
 }
 </code></pre>
 
-<div class="center">
-    <img src="http://responsive-images.herokuapp.com/images/pixar-480.jpg"/>
-</div>
-
-
-<p>We can also do the same for Tablets device:</p>
-
-<pre><code>/* Screen &gt;= 768 */
-@media screen and (min-width:768px){
-    body {
-      width: 768px;
-    }
-    figure{
-      background-image:url('/images/pixar-768.jpg');
-      background-repeat:no-repeat;
-      width:100%;
-      height:421px;
-    }    
-}
-</code></pre>
-
-<p>And we could keep adding more media queries:</p>
-
-<pre><code>/* Screen &gt;= 960 */
-@media screen and (min-width:960px){    
-    body {
-      width:960px;
-    }
-    figure{
-      background-image:url('/images/pixar-960.jpg');
-      background-repeat:no-repeat;      
-      width:100%;
-      height:466px;
-    }
-}
-</code></pre>
-
-<h2>Where's the trick?</h2>
-
-<p>This is a proof of concept, but it works nicely for Android or iPhone/iPad devices.
-If the user will load the page in portrait mode (thus 320px), the 480px image is loaded only
-by rotating the mobile in landscape position.</p>
-
-<p>When the mobile is already in landscape position, the mobile will load both images,
-320px and 480px. That's not completely bad, since users tend to swap between portrait
-and landscape most of the time.</p>
-
-<p>The good news is that larger images (768px and 960px) won't be loaded in our mobiles, thus
-saving bandwidth.</p>
-
-<p>Here's a complete example with a <a href="http://responsive-images.herokuapp.com/" title="responsive images demo">responsive images demo</a>
-and here's the <a href="https://github.com/rosario/responsive-images" title="source code">source code</a></p>
+<p>That's all. Give it a spin if you'd like, but remember that it's <em>alpha</em> code.
+Here's the Chrome extension: <a href="https://chrome.google.com/webstore/detail/qopim/afbllpelodekoheogfidhgncbfpendlj">Chat on Last.fm</a></p>
 
 
 
