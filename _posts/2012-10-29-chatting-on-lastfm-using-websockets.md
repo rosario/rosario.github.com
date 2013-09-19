@@ -2,7 +2,8 @@
 layout: post
 title: Chatting on Last.fm using websockets
 image: '/images/qop-lastfm.png'
-excerpt: |- Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
+excerpt: |- 
+          Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
 ---
 ### Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
 

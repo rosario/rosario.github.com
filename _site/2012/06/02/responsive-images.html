@@ -8,7 +8,7 @@
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>Blog of Saro</title>
+	<title>Rosario's Blog</title>
 	<meta name="description" content="Blog of a software developer living and working in europe">
 	<meta name="author" content="">
 
@@ -18,9 +18,7 @@
 
 	<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="/stylesheets/skeleton/base.css">
-	<link rel="stylesheet" href="/stylesheets/skeleton/skeleton.css">
-	<link rel="stylesheet" href="/stylesheets/skeleton/layout.css">
+	<link rel="stylesheet" href="/stylesheets/pure-min.css">
 	<link rel="stylesheet" href="/stylesheets/main.css">
 	<link rel="stylesheet" href="/stylesheets/docco.css">
 	<link rel="stylesheet" href="/stylesheets/styles/googlecode.min.css">
@@ -38,26 +36,48 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="four columns sidebar">
-			<nav>
-				<h4 id="logo">Blog of Saro</h4>
-				<ul>
- 					<li><a href="/">Home</a></li>
-					<!-- li><a href="/archive">Archive</a></li> -->
-					<h5> Rosario works and lives in London, he likes Brighton and loves Budapest. </h5>
-					<h5 class="followme">You can follow me here:
-						<a href="https://twitter.com/_sarhus">@_sarhus</a>
-						<img src="/images/followme.png"/>
-					</h5>
-				</ul>
-			</nav>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <header class="header">
+                <hgroup>
+                    <a href="/">
+                        <img class="profile" src="/images/profile.jpg">
+                    </a>
+                    <h1 class="brand-title">Rosario Rascuna</h1>
+                    <h2 class="brand-tagline">
+                        Maintaner of <a href="http://roundabout.io" rel="London Startups Map">Roundabout.io</a><br>
+                        Developer at <a href="http://codersumo.com" rel="Coders community">Codersumo</a><br>
+                        Teacher at <a href="http://coderwave.com" rel="Web development workshops in London">Coderwave</a><br>
+                        Twitter <a href="https://twitter.com/_sarhus">@_sarhus</a>
+                    </h2>
+                    <div class="home-link">
+                        <a rel="home" href="/"> <img src="/images/home-icon.png"/> </a>
+                    </div>
+                </hgroup>
+            </header>
+            <footer class="footer">
+                <div class="pure-menu pure-menu-horizontal pure-menu-open">
+                    <ul>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="http://twitter.com/_sarhus">Twitter</a></li>
+                        <li><a href="http://github.com/rosario">Github</a></li>
+                    </ul>
+                </div>
+            </footer>
+            
+            
+        </div>
+        <div class="pure-u-1">
+            <div class="content">
+                <header class="post-header">
+    <h1 class="post-title"><a href="">Responsive images</a></h1>
+    <p class="post-meta">
+        02 Jun 2012
+        
+    </p>
+</header>
 
-			&nbsp;
-		</div>
-		<div class="twelve columns content">
-			<h1 class="title">Responsive images</h1>
-<p class="date"> 02 Jun 2012 </p>
+
 
 <h3>Mobile phones don't need to download fullsize images. Although responsive images are still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.</h3>
 
@@ -204,24 +224,25 @@ and here's the <a href="https://github.com/rosario/responsive-images" title="sou
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-		</div>
-		
-		<!-- <div class="sixteen columns footer"></div> -->
-	</div>
-	<script>hljs.initHighlightingOnLoad();</script>
-	
-	<script type="text/javascript">
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <script type="text/javascript">
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-31897052-1']);
-	  _gaq.push(['_trackPageview']);
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-31897052-1']);
+      _gaq.push(['_trackPageview']);
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-	</script>	
+    </script>   
 </body>
 </html>

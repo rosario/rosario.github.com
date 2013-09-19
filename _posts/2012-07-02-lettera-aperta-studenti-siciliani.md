@@ -2,7 +2,8 @@
 layout: post
 title: Lettera aperta agli studenti siciliani
 image: ''
-excerpt: |- Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.
+excerpt: |- 
+          Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.
     
 ---
 
