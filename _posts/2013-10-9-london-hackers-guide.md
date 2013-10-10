@@ -4,7 +4,7 @@ title: London Hackers Guide
 ---
 
 
-A short guide for all the hackers willing to live or relocate to London.
+A short guide for all the hackers willing to live in London.
 
 
 <div class="center">
