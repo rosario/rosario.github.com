@@ -17,12 +17,12 @@ A short guide for all the hackers willing to live in London.
 
 Most of tech companies and startups are based in East London (Shoreditch and around Old Street - the [Silicon Roundabout][roundabout]).
 If you're a meetup/hackhaton/conferences kind of person that's where you want to live.
-You might also choose to live in Hoxton or Haggerston, as long as you're close to the Overground it easy to commute.
+You might also choose to live in Hoxton or Haggerston, as long as you're close to the Overground it's easy to commute.
 
 
 
 West London can be cheaper than East nowdays. The Central line is usually fast but 
-busy during office hours. A typical commute time from West London to East London could take up to 30mins. 
+busy during office hours. A typical commute time from West London to East London could take up to 30 mins. 
 Use the [Transports for London][tfl]  or [City Mapper][city-mapper] to find out more about commuting time.
 
 
@@ -70,7 +70,7 @@ will be from Letting Agents.
 * Double check if the aparment you've found is still available (**phone** the agency).
 * Be patient. It could take a couple of weeks before you find something nice. 
 * Be fast. If you like it, tell the agents you want to take it. Note: typically you'll have to give a deposit.
-* **Pro tip** If you set an appointment with an agent, call them on the phone a couple of
+* **Pro tips** If you set an appointment with an agent, call them on the phone a couple of
 hours before the meeting. Letting agents *tend to forget* to call you back if the property is already gone.
 You'll spare a trip and save time.
 
@@ -84,7 +84,7 @@ and you might actually find a good deal.
 ## Accelerators / Incubators
 
 If you're coming to London because you want to start a business that's a great time for being in the City. 
-Here's a list of most important ones in London:
+Here's a list of most important accelerators and incubators in London:
 
 [Oxygen Accelerator][oxigen] | 
 [SpringBoard][springboard] |
@@ -115,7 +115,7 @@ Here's a list of most important ones in London:
 
 There are so many events happening in London that's really hard to keep track of all of them. 
 [Meetup][meetup] is a good place to start looking, as well as [EventBrite][eventbrite]. There's also
-[Attending.io][attending] (london startup!) that list events happening in London.
+[Attending.io][attending] (london startup!) that lists some events happening in London.
 
 A list of recommended events and meetups:
 
@@ -199,8 +199,7 @@ your area and you might even get to know about new paid gigs.
 * [Silicon Milk Roudabout][silicon-milk-roundabout] A really big job fair in London.
 
 
-**Hacker approach**: If you're a software developer you might find relatively easy to get a job in London. 
-Job boards are ok. A better approach is to join some developers mailing lists. 
+**Hacker approach**: Job boards are ok. A better approach is to join some developers mailing lists. 
 Look for your favourite programming language meetup and group. Searching for "[language] User Group London" 
 on Google will do the trick.
 
