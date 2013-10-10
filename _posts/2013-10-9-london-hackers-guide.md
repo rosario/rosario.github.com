@@ -244,4 +244,4 @@ I'm sure I've missed some event, incubator or something important to write (also
 
 If you'd like to suggest a link, just leave it in the comments here or join the discussion on [hacker news][hacker-news].
 
-[hacker-news]: http://news.ycombinator.com
+[hacker-news]: https://news.ycombinator.com/item?id=6526888
