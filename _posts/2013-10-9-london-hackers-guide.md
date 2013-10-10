@@ -28,7 +28,7 @@ Use the [Transports for London][tfl]  or [City Mapper][city-mapper] to find out 
 
 [tfl]: http://www.tfl.gov.uk/
 
-**East London**:  Shoreditch, Bethnal Green, Dalston Kingsland, Hackney - The are tons of bars and clubs in 
+**East London**:  Shoreditch, Bethnal Green, Dalston Kingsland, Hackney - There are tons of bars and clubs in 
 the area. If you work around the "Silicon Roundabout" it could be the most obvious choice to live there. 
 Note that it could be noisy in certain streets (lots of partygoers).
 
@@ -75,7 +75,7 @@ hours before the meeting. Letting agents *tend to forget* to call you back if th
 You'll spare a trip and save time.
 
 I haven't dealt with private landlords that much, I think it's a bit more risky (it depends
-on the landlord) but for if you feel brave you can always have a look at [Gumtree][gumtree] (it's the local CraigsList) 
+on the landlord) but if you feel brave you can always have a look at [Gumtree][gumtree] (it's the local CraigsList) 
 and you might actually find a good deal.
 
 [gumtree]: http://www.gumtree.com/
