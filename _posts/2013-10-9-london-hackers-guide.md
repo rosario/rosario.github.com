@@ -155,6 +155,7 @@ your area and you might even get to know about new paid gigs.
 [CoWork][co-work] |
 [The Cube][the-cube] |
 [Google Campus][google-campus] |
+[HackSpace][hackspace] | 
 [Hoxton Mix][hoxton-mix] |
 [The Hub][the-hub] |
 [Innovation Warehouse][innovation-warehouse] |
@@ -195,6 +196,7 @@ your area and you might even get to know about new paid gigs.
 [the-trampery]: http://thetrampery.com
 [white-beard]: http://whitebearyard.com
 [warnder-yard]: http://www.warneryard.com/
+[hackspace]: https://london.hackspace.org.uk/
 
 
 ## Looking for Work
