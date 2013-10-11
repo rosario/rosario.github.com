@@ -124,6 +124,9 @@ A list of recommended events and meetups:
 * [Open Coffee][open-coffee]
 * [Campus London Events][campus-london-events]
 * [London Software Craftsmanship][software-craftsmanship]
+* [Front End London][frontend-london]
+* [Tech Hub Demo Night][techhub-demo]
+* [Don't Pitch me Bro][dont-pitch]
 
 [meetup]: http://www.meetup.com/
 [eventbrite]: http://www.eventbrite.com/
@@ -133,6 +136,10 @@ A list of recommended events and meetups:
 [open-coffee]: http://www.meetup.com/londonocc/
 [hn-meetup]: http://www.meetup.com/HNLondon
 [minibar]: http://www.meetup.com/minibar/
+[frontend-london]: http://www.frontendlondon.co.uk/
+[techhub-demo]: http://london.techhub.com/events/
+[dont-pitch]: http://dont.pitchmebro.com/
+
 
 
 ##Coworking Spaces
