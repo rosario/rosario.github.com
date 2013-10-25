@@ -128,6 +128,8 @@ A list of recommended events and meetups:
 * [Tech Hub Demo Night][techhub-demo]
 * [Don't Pitch me Bro][dont-pitch]
 
+For a longer list, check the [London Tech Event Collection][tech-collection]
+
 [meetup]: http://www.meetup.com/
 [eventbrite]: http://www.eventbrite.com/
 [attending]: http://attending.io/events
@@ -139,7 +141,7 @@ A list of recommended events and meetups:
 [frontend-london]: http://www.frontendlondon.co.uk/
 [techhub-demo]: http://london.techhub.com/events/
 [dont-pitch]: http://dont.pitchmebro.com/
-
+[tech-collection]: https://github.com/monbro/london-tech-event-hack-collection/
 
 
 ##Coworking Spaces
