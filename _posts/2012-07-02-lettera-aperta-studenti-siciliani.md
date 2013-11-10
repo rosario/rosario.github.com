@@ -2,12 +2,10 @@
 layout: post
 title: Lettera aperta agli studenti siciliani
 image: ''
-excerpt: |- 
-          Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.
-    
+
 ---
 
-### Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.
+Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.
 
 Mi chiamo Rosario, e siciliano sono. Mi sono laureato in Informatica a Catania ma vivo da tempo lontano dalla Sicilia.
 Lavoro come freelancer, la moderna versione del mercenario informatico. Non ho un capo, ma clienti. Non ho un orario di ufficio
@@ -32,5 +30,5 @@ hipmunk ecc ecc.
 Perché una startup? Perché potete essere padroni delle vostre scelte, perché siete stati educati 
 per diventare creatori di tecnologia non forza da lavoro da cubicolo.
 
-### Fate un favore a voi stessi, non andate a lavorare subito dopo la laurea, fate partire una startup, la **vostra startup**.
+_Fate un favore a voi stessi, non andate a lavorare subito dopo la laurea, fate partire una startup, la vostra startup_.
 

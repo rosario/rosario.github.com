@@ -1,3 +1,15 @@
 markdown: rdiscount
-pygments: false
+pygments: true
 safe: false
+
+
+description: "Blogging about coding, startups and ideas."
+logo: false
+meta_description: "Rosario's Blog. Blogging about coding, startups and ideas."
+
+paginate: 15
+# Details for the RSS feed generator
+name:           Rosario's Blog
+url:            'https://rosario.github.io'
+description:    'Blogging about coding, startups and indeas'
+author:         'Rosario Rascuna'

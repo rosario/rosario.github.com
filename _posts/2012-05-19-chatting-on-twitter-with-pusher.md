@@ -2,12 +2,9 @@
 layout: post
 title: Chatting on Twitter (1/2)
 image: '/images/screenshot.png'
-excerpt: |-
-    Can we embed a chat widget on <strong>Twitter</strong>? Yes, with few tricks and <strong>Pusher</strong> we can create a widget and chat with our Twitter friends.
 ---
 
-
-### Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our Twitter friends.
+Can we embed a chat widget on **Twitter**? Yes, with few tricks and **Pusher** we can create a widget and chat with our Twitter friends.
 
 ![qop chat](/images/screenshot.png "qop chat screenshot")
 

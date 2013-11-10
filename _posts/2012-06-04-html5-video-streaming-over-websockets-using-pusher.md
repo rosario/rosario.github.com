@@ -2,12 +2,10 @@
 layout: post
 title: HTML5 Video Streaming over WebSockets using Pusher
 image: '/images/pusher-logo.png'
-excerpt: |-
-    Using the new <strong>getUserMedia</strong> of Chrome it's possible to send a stream of images over <strong>websockets</strong>. An experiment with Node.js and Pusher Pipe.
 ---
 
 
-### Using the new **getUserMedia** it's possible to send a stream of images over **websockets**. An experiment with Node.js and Pusher Pipe.
+Using the new **getUserMedia** it's possible to send a stream of images over **websockets**. An experiment with Node.js and Pusher Pipe.
 
 
 
@@ -17,7 +15,7 @@ Overview
 There's a new feature in the latest Chrome browser's (Chrome 18 and 19, and Canary 21) called **getUserMedia**.
 It's still an experimental feature and it's hidden behind _chrome://flags_
 
-> **Enable Media Source API on \<video\> elements.**
+> **Enable Media Source API on `<video>` elements.**
   Enable experimental Media Source API on the video elements. This API allows JavaScript to send media data directly to a video element.
 
 

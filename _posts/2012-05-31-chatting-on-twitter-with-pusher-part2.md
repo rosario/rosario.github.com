@@ -2,12 +2,10 @@
 layout: post
 title: Chatting on Twitter (2/2)
 image: ''
-excerpt: |-
-    How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.
 ---
 
 
-### How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.
+How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.
 
 
 Overview

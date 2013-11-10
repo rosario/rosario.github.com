@@ -2,10 +2,10 @@
 layout: post
 title: Chatting on Last.fm using websockets
 image: '/images/qop-lastfm.png'
-excerpt: |- 
-          Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
+
 ---
-### Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
+
+Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.
 
 ![qop chat](/images/qop-lastfm.png "qop chat screenshot")
 
@@ -16,27 +16,32 @@ The hack
 As shown before, it's relatively easy to embed a [chat box on twitter](/2012/05/19/chatting-on-twitter-with-pusher.html).
 Doing the same for [last.fm](http://last.fm) is trivial. First, we need to add _omniauth\_lastfm_ in the _Gemfile_ of our Sinatra app.
 
-    gem 'omniauth-lastfm'
+{% highlight ruby %}
+gem 'omniauth-lastfm'
+{% endhighlight %}
 
 We need to add also the _require_ in the app file:
 
-    require 'omniauth-lastfm'
+{% highlight ruby %}
+require 'omniauth-lastfm'
+{% endhighlight %}
 
 Now we have to define the OAuth callback for Lastfm:
 
-    get '/auth/lastfm/callback' do
-      auth = request.env["omniauth.auth"]
-      
-      user = User.first_or_create({ :uid => auth["uid"]}, {
-        :uid => auth["uid"],
-        :name => auth["info"]["name"],
-        :nickname => auth["info"]["name"],
-        :created_at => Time.now })
-      
-      session[:user_id] = user.id # User logged in
-      redirect 'http://last.fm'
-    end
-
+{% highlight ruby %}
+get '/auth/lastfm/callback' do
+  auth = request.env["omniauth.auth"]
+  
+  user = User.first_or_create({ :uid => auth["uid"]}, {
+    :uid => auth["uid"],
+    :name => auth["info"]["name"],
+    :nickname => auth["info"]["name"],
+    :created_at => Time.now })
+  
+  session[:user_id] = user.id # User logged in
+  redirect 'http://last.fm'
+end
+{% endhighlight %}
 
 Chrome Extension
 ----------------

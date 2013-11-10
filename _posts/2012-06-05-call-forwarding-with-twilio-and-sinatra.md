@@ -2,21 +2,15 @@
 layout: post
 title: Call Forwarding with Twilio and Sinatra
 image: '/images/telefono.png'
-excerpt: |-
-    Let's see how to setup call fowarding using <strong> Twilio </strong> and Sinatra. The application can be hosted on <strong> Heroku</strong>.
+
 ---
 
-### Let's see how to setup call fowarding using **Twilio** and Sinatra. The application can be hosted on **Heroku**.
+Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could 
+be different reasons why you'd want to have another phone number, without having to carry a physical phone.
 
 <div class="center">
   <img src="/images/telefono.png" alt="phone">
 </div>
-
-Overview
---------
-
-Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could 
-be different reasons why you'd want to have another phone number, without having to carry a physical phone.
 
 A typical case is when you submit your CV to websites. Instead of giving away your mobile number, you
 could buy a number from [Twilio](http://twilio.com "Twilio"), create a micro application hosted for free on
