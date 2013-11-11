@@ -3,7 +3,7 @@ layout: post
 title: "Kasper - A theme for Jekyll"
 ---
 
-[Ghost](http://ghost.org) is a very interesting blogging platform written Node.js, and 
+[Ghost](http://ghost.org) is a very interesting blogging platform written in Node.js and 
 it features a good, simple and modern theme called Casper. I really like Casper and I wanted 
 to port it to Jekyll. The result is [Kasper](http://github.com/rosario/kasper).
 
