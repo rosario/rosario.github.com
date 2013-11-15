@@ -3,9 +3,9 @@ pygments: true
 safe: false
 
 
-description: "Blogging about coding, startups and ideas."
+description: "Coding, startups and ideas."
 logo: false
-meta_description: "Rosario's Blog. Blogging about coding, startups and ideas."
+meta_description: "Rosario's Blog. Coding, startups and ideas."
 
 paginate: 15
 # Details for the RSS feed generator
