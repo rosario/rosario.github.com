@@ -2,7 +2,19 @@
 
 /* Font size of 2.0 is too big, I'll reduce it */
 body{
-	font-size: 1.9rem; 
+	font-size: 1.7em;
+	color: #342526;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: #342526;
+}
+
+.site-head-content{
+	padding:15px;
+}
+.post-excerpt p {
+	font-size: 1em;
 }
 
 /* Adding some text shadow*/
@@ -46,5 +58,11 @@ img.profile {
 	width:80px;
 	height:auto;
   	border-radius: 50px;
+}
+
+
+.blog-logo img{
+	border-radius: 50px;
+	border:2px solid #999;
 }
 
