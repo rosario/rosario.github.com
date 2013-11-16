@@ -61,10 +61,9 @@ module Jekyll
       # File creation and writing
       rss_path = ensure_slashes(site.config['rss_path'] || "/")
       rss_name = site.config['rss_name'] || "rss.xml"
-      full_path = File.join(site.dest, rss_path)
+      full_path = File.join(site.source, rss_path)
       ensure_dir(full_path)
       File.open("#{full_path}#{rss_name}", "w") { |f| f.write(rss) }
-
       # Add the feed page to the site pages
       site.pages << Jekyll::RssFeed.new(site, site.dest, rss_path, rss_name)
     end

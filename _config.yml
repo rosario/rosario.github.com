@@ -12,3 +12,4 @@ paginate: 15
 name:           Rosario's Blog
 url:            'http://rosario.io'
 author:         'Rosario Rascuna'
+rss_path: 		'/'
