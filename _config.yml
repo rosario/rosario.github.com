@@ -1,7 +1,7 @@
 markdown: rdiscount
 pygments: true
 safe: false
-
+permalink: :title
 
 description: "Coding, startups and ideas."
 logo: false
