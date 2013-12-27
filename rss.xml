@@ -11,7 +11,7 @@
     <pubDate>Sun, 10 Nov 2013 00:00:00 +0000</pubDate>
     <item>
       <title>Kasper - A theme for Jekyll</title>
-      <link>http://rosario.io/kasper-theme-for-jekyll</link>
+      <link>http://rosario.io/2013/11/10/kasper-theme-for-jekyll.html</link>
       <description>&lt;p&gt;&lt;a href=&quot;http://ghost.org&quot;&gt;Ghost&lt;/a&gt; is a very interesting blogging platform written in Node.js and
 it features a good, simple and modern theme called Casper. I really like Casper and I wanted
 to port it to Jekyll. The result is &lt;a href=&quot;http://github.com/rosario/kasper&quot;&gt;Kasper&lt;/a&gt;.&lt;/p&gt;
@@ -21,7 +21,7 @@ to port it to Jekyll. The result is &lt;a href=&quot;http://github.com/rosario/k
     </item>
     <item>
       <title>London Hackers Guide</title>
-      <link>http://rosario.io/london-hackers-guide</link>
+      <link>http://rosario.io/2013/10/09/london-hackers-guide.html</link>
       <description>&lt;p&gt;A short guide for all the hackers willing to live in London.&lt;/p&gt;
 </description>
       <pubDate>Wed, 09 Oct 2013 00:00:00 +0100</pubDate>
@@ -29,7 +29,7 @@ to port it to Jekyll. The result is &lt;a href=&quot;http://github.com/rosario/k
     </item>
     <item>
       <title>Chatting on Last.fm using websockets</title>
-      <link>http://rosario.io/chatting-on-lastfm-using-websockets</link>
+      <link>http://rosario.io/2012/10/29/chatting-on-lastfm-using-websockets.html</link>
       <description>&lt;p&gt;Adding a Chat box on Last.fm is easier than you think. Here's a quick hack.&lt;/p&gt;
 </description>
       <pubDate>Mon, 29 Oct 2012 00:00:00 +0000</pubDate>
@@ -37,7 +37,7 @@ to port it to Jekyll. The result is &lt;a href=&quot;http://github.com/rosario/k
     </item>
     <item>
       <title>Lettera aperta agli studenti siciliani</title>
-      <link>http://rosario.io/lettera-aperta-studenti-siciliani</link>
+      <link>http://rosario.io/2012/07/02/lettera-aperta-studenti-siciliani.html</link>
       <description>&lt;p&gt;Non andate a lavorare. Dopo la laurea, studiate quello che vi serve per far partire una startup.&lt;/p&gt;
 </description>
       <pubDate>Mon, 02 Jul 2012 00:00:00 +0100</pubDate>
@@ -45,7 +45,7 @@ to port it to Jekyll. The result is &lt;a href=&quot;http://github.com/rosario/k
     </item>
     <item>
       <title>Call Forwarding with Twilio and Sinatra</title>
-      <link>http://rosario.io/call-forwarding-with-twilio-and-sinatra</link>
+      <link>http://rosario.io/2012/06/05/call-forwarding-with-twilio-and-sinatra.html</link>
       <description>&lt;p&gt;Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could
 be different reasons why you'd want to have another phone number, without having to carry a physical phone.&lt;/p&gt;
 </description>
@@ -54,7 +54,7 @@ be different reasons why you'd want to have another phone number, without having
     </item>
     <item>
       <title>HTML5 Video Streaming over WebSockets using Pusher</title>
-      <link>http://rosario.io/html5-video-streaming-over-websockets-using-pusher</link>
+      <link>http://rosario.io/2012/06/04/html5-video-streaming-over-websockets-using-pusher.html</link>
       <description>&lt;p&gt;Using the new &lt;strong&gt;getUserMedia&lt;/strong&gt; it's possible to send a stream of images over &lt;strong&gt;websockets&lt;/strong&gt;. An experiment with Node.js and Pusher Pipe.&lt;/p&gt;
 </description>
       <pubDate>Mon, 04 Jun 2012 00:00:00 +0100</pubDate>
@@ -62,7 +62,7 @@ be different reasons why you'd want to have another phone number, without having
     </item>
     <item>
       <title>Responsive images</title>
-      <link>http://rosario.io/responsive-images</link>
+      <link>http://rosario.io/2012/06/02/responsive-images.html</link>
       <description>&lt;p&gt;Mobile phones don't need to download fullsize images. Although responsive images are still a work in progress, there's a quick way to save bandwidth and load small images for mobile phones.&lt;/p&gt;
 </description>
       <pubDate>Sat, 02 Jun 2012 00:00:00 +0100</pubDate>
@@ -70,7 +70,7 @@ be different reasons why you'd want to have another phone number, without having
     </item>
     <item>
       <title>Chatting on Twitter (2/2)</title>
-      <link>http://rosario.io/chatting-on-twitter-with-pusher-part2</link>
+      <link>http://rosario.io/2012/05/31/chatting-on-twitter-with-pusher-part2.html</link>
       <description>&lt;p&gt;How to setup Sprockets without Rails. Self referencial association with DataMapper. Delayed job for Sinatra.&lt;/p&gt;
 </description>
       <pubDate>Thu, 31 May 2012 00:00:00 +0100</pubDate>
@@ -78,7 +78,7 @@ be different reasons why you'd want to have another phone number, without having
     </item>
     <item>
       <title>Chatting on Twitter (1/2)</title>
-      <link>http://rosario.io/chatting-on-twitter-with-pusher</link>
+      <link>http://rosario.io/2012/05/19/chatting-on-twitter-with-pusher.html</link>
       <description>&lt;p&gt;Can we embed a chat widget on &lt;strong&gt;Twitter&lt;/strong&gt;? Yes, with few tricks and &lt;strong&gt;Pusher&lt;/strong&gt; we can create a widget and chat with our Twitter friends.&lt;/p&gt;
 </description>
       <pubDate>Sat, 19 May 2012 00:00:00 +0100</pubDate>
