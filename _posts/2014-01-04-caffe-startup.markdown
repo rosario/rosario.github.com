@@ -7,7 +7,7 @@ Parliamo di caffè e startups. L'Inghilterra scopre il piacere di bere un buon c
 
 Se facciamo una passegiata nella zona East di Londra, possiamo trovare sempre più numerosi dei caffè a gestione 'locale'. Fino a pochi anni fa, gli unici posti dove bere un caffè erano i vari Costa Coffe, Starbucks, e Caffe Nero. Lo chiamano coffee, ma a dirla tutta è un miscuglio nero e bruciacchiato, mischiato con mezzo litro di latte riscaldato fino al punto di ebollizione. 
 
-Durante gli ultimi cinque anni invece, l'inghilterra e specialmente Londra, scopre che cosa significa bere un buon caffè. Ottimo, peccato che un espresso costi sui £2.50 in certi posti, ma questa è Londra e tutto costa caro. 
+Durante gli ultimi cinque anni invece, l'Inghilterra e specialmente Londra, scopre che cosa significa bere un buon caffè. 
 
 ![tazzina](/images/tazzina.jpg)
 <small> Image credits to <a style="text-align:right;" href="http://www.flickr.com/photos/tazzinaincucina/"> Tazzina in Cucina </a></small>
