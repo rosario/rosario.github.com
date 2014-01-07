@@ -38,7 +38,7 @@ that I wasn't looking to hire anyone, although it didn't help much!
 
 Hopefully I'll be able to convince some tech recruiters to come and attend the coding workshops, 
 sooner or later they'll also need to up their game, and knowing at least something 
-about software developer won't cause any harm. 
+about software developement won't cause any harm. 
 
 ### Care to help? 
 If you'd like to help, let your favourite tech recruiters in London know about
