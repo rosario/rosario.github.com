@@ -22,3 +22,8 @@ Non li ho ancora provati, ma sono molto curioso di provarli. È ancora troppo pr
 
 Dispiace solo una cosa. Starbucks, Caffe Nero e Costa Coffee sono tutti in mano a stranieri. Peccato che come italiani, stiamo perdendo anche il treno del "miglior caffè, macinato fresco" venduto online.
 
+
+### Pasqua Rosée, Ragusana
+
+La prima coffee house di Londra è nata dall'idea di [Pasqua Rosée](http://en.wikipedia.org/wiki/Pasqua_Ros%C3%A9e) nel 1652.
+Pasqua era di Ragusa, in Sicilia.
