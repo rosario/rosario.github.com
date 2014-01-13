@@ -25,5 +25,5 @@ Dispiace solo una cosa. Starbucks, Caffe Nero e Costa Coffee sono tutti in mano 
 
 ### Pasqua Rosée, Ragusana
 
-La prima coffee house di Londra è nata dall'idea di [Pasqua Rosée](http://en.wikipedia.org/wiki/Pasqua_Ros%C3%A9e) nel 1652.
+La prima coffee house di Londra è stata aperta da [Pasqua Rosée](http://en.wikipedia.org/wiki/Pasqua_Ros%C3%A9e) nel 1652.
 Pasqua era di Ragusa, in Sicilia.
