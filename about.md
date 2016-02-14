@@ -1,17 +1,15 @@
 ---
 
 layout: page
-title: About me 
+title: About me
 
 ---
 
 The volcano in the main page is the place where I grew up. Now I live in London.
 
-I'm a freelance software developer teaching at <a href="http://coderwave.com">Coderwave</a>.
+I'm a freelance software developer working as a <a href="http://cirneco.digital/clojure-consultants-london">Clojure consultant in London</a> and teaching at <a href="http://coderwave.com">Coderwave</a>.
 
-I develop and maintain <a href="http://roundabout.io">Roundabout.io - London Startup Map</a> and 
-<a href="http://codersumo.com">Codersumo</a> a community of coders who like to solve programming puzzles.
-
+I develop and maintain <a href="http://roundabout.io">Roundabout.io - London Startup Map</a>.
 
 
 
