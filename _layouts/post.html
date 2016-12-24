@@ -2,34 +2,30 @@
 layout: default
 disqus: true
 archive: false
+post_class: post-template
 ---
 
+<header class="main-header post-head {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
+    <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix">
+        <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Home</a>
+        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
+    </nav>
+</header>
 
 <main class="content" role="main">
 
     <article class="post">
 
         <header class="post-header">
-            <a id="blog-logo" href="{{site.url}}">
-                {% if site.logo %}
-                    <img src="{{site.logo}}" alt="Rosario's Blog" />
-                {% else %}
-                    <span class="blog-title">{{ site.name }}</span>
-                {%endif%}
-            </a>
+            <h1 class="post-title">{{ page.title }}</h1>
+            <section class="post-meta" style="margin-bottom:1em;">
+
+                {% if page.categories.size > 0 %}
+                    {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
+                {% endif %}
+                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+            </section>
         </header>
-
-        <span class="post-meta">
-        	<time datetime="{{ page.date | date_to_string }}">{{ page.date | date_to_string }}</time>
-        	{% if post.categories %}
-        		on
-	        	{% for category in page.categories %}
-	        	    {{category}}
-	        	{% endfor %}
-	        {% endif %}
-       	</span>
-
-        <h1 class="post-title">{{ page.title }}</h1>
 
         <section class="post-content">
             {{content}}
@@ -37,65 +33,40 @@ archive: false
 
         {% if page.archive %}
         <section class="archive">
-        	<h5>Archive</h5>
-    		<ul>
-    			{% for post in site.posts %}
-    				<li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
-    			{% endfor %}
-    		</ul>
+            <h5>Archive</h5>
+            <ul>
+                {% for post in site.posts %}
+                    <li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
         </section>
         {% endif %}
 
         <footer class="post-footer">
-        	<!-- If we want to display author's name and bio -->
+            <!-- If we want to display author's name and bio -->
             {% if site.author %}
+                <figure class="author-image">
+                    <a class="img" href="{{ site.baseurl }}" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">{{site.author}}'s Picture</span></a>
+                </figure>
                 <section class="author">
-                	<header> <a href="{{ site.baseurl }}"> <img class="profile" src="/images/profile.png"></a></header>
-                	<article>
-                		<!-- Author Name -->
-                    	<h4> {{ site.author }} </h4>
-                    	<!-- Author Bio -->
-                    	<p> I'm a software developer working as a <a href="http://cirneco.digital/clojure-consultants-london">Clojure consultant in London</a>.
-                            Teaching at <a href="http://coderwave.com">Coderwave</a> and maintainer of the <a href="http://roundabout.io"> London Startup Map </a>.
-                            I'm <a href="http://twitter.com/_sarhus"> @_sarhus </a> on Twitter.
-                             You can find me on <a href="https://plus.google.com/107675697693587701246?rel=author"> Google+</a>.
-                    	</p>
-                    </article>
+                    <!-- Author Name -->
+                    <h4> {{ site.author }} </h4>
+                    <!-- Author Bio -->
+                    <p> I'm a software developer working as a <a href="http://cirneco.digital/clojure-consultants-london">Clojure consultant in London</a>.
+                        Teaching at <a href="http://coderwave.com">Coderwave</a> and maintainer of the <a href="http://roundabout.io"> London Startup Map </a>.
+                        I'm <a href="http://twitter.com/_sarhus"> @_sarhus </a> on Twitter.
+                        You can find me on <a href="https://plus.google.com/107675697693587701246?rel=author"> Google+</a>.
+                    </p>
                 </section>
             {% endif %}
 
-            <section class="share">
-                <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text={{page.title}}&url={{site.url}}{{ page.url }}"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <span class="hidden">Twitter</span>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{site.url}}{{page.url}}"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <span class="hidden">Facebook</span>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url={{site.url}}{{page.url}}"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <span class="hidden">Google+</span>
-                </a>
-            </section>
+            <!-- Share links section -->
+            {% include share.html %}
 
+            <!-- Disqus comments -->
             {% if page.disqus %}
-            <section class="disqus">
-            	<div id="disqus_thread"></div>
-            	<script type="text/javascript">
-
-            	    var disqus_shortname = 'sarhus';
-            		var disqus_developer = 0; // developer mode is on
-            	    (function() {
-            	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            	    })();
-            	</script>
-            	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-            	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+                {% include disqus.html %}
             {% endif %}
 
         </footer>
@@ -103,7 +74,3 @@ archive: false
     </article>
 
 </main>
-
-
-
-

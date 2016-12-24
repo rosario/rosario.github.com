@@ -1,8 +1,6 @@
 ---
-
 layout: page
 title: About me
-
 ---
 
 The volcano in the main page is the place where I grew up. Now I live in London.

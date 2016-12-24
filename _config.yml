@@ -1,19 +1,18 @@
+name: Rosario's Blog
+description: Coding, startups and ideas.
+meta_description: Rosario's Blog. Coding, startups and ideas.
+date: 2012
+permalink: /:year/:month/:day/:title
+
+markdown: kramdown
+highlighter: pygments
+logo: false
+paginate: 15
+baseurl: /
+domain_name: 'rosario.io'
+google_analytics: 'UA-31897052-1'
 gems: [jekyll-paginate]
 
-markdown: rdiscount
-highlither: true
-safe: false
-
-
-description: "Coding, startups and ideas."
-logo: false
-meta_description: "Rosario's Blog. Coding, startups and ideas."
-
-paginate: 15
 # Details for the RSS feed generator
-name:           Rosario's Blog
-
-# url:            'http://rosario.io'
 url:            '/'
 author:         'Rosario Rascuna'
-rss_path: 		'/'
