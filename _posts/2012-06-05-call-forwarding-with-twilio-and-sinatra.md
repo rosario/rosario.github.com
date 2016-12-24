@@ -5,7 +5,7 @@ image: '/images/telefono.png'
 
 ---
 
-Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could 
+Say you want to buy a virtual phone number, and you'd like to redirect calls to your mobile number. There could
 be different reasons why you'd want to have another phone number, without having to carry a physical phone.
 
 <div class="center">
@@ -14,16 +14,17 @@ be different reasons why you'd want to have another phone number, without having
 
 A typical case is when you submit your CV to websites. Instead of giving away your mobile number, you
 could buy a number from [Twilio](http://twilio.com "Twilio"), create a micro application hosted for free on
-heroku, and let Twilio redirect those calls to your mobile number. 
+heroku, and let Twilio redirect those calls to your mobile number.
 
 You talkin' to ME ?!?
 ---------------------
 
-Twilio uses [TWIML](http://www.twilio.com/docs/api/twiml "TWIML"), a markup language that describes operations like **DIAL** or **REJECT**. 
+Twilio uses [TWIML](http://www.twilio.com/docs/api/twiml "TWIML"), a markup language that describes operations like **DIAL** or **REJECT**.
 
-When somebody calls our virtual phone number, Twilio will make a _POST_ request to our server. We return some TWIML 
+When somebody calls our virtual phone number, Twilio will make a _POST_ request to our server. We return some TWIML
 instructing Twilio to forward that call to our personal (mobile or landline) phone:
 
+{% highlight ruby %}
       post '/:twilio_number' do
         if @account and @account.forward_number
           # Dial phone number
@@ -32,7 +33,7 @@ instructing Twilio to forward that call to our personal (mobile or landline) pho
             xml.Response do
                 xml.Dial @account.forward_number,
                   :action =>"/call_status/#{params[:twilio_number]}"
-            end  
+            end
           end
         else
           # Reject the call, the number is not active
@@ -43,12 +44,14 @@ instructing Twilio to forward that call to our personal (mobile or landline) pho
           end
         end
       end
+{% endhighlight %}
 
-Note, this **POST** request is made by Twilio to our server. We need to configure our Twilio Account and 
+Note, this **POST** request is made by Twilio to our server. We need to configure our Twilio Account and
 associate an _URL_ with our virtual phone number.
 
 The following **action** is executed when the phone hangs up, we just instruct Twilio to close the call:
 
+{% highlight ruby %}
       post '/call_status/:twilio_number' do
         builder do |xml|
           xml.instruct!
@@ -57,7 +60,7 @@ The following **action** is executed when the phone hangs up, we just instruct T
           end
         end
       end
-    
+{% endhighlight %}
 
 
 Logging
@@ -66,7 +69,7 @@ Logging
 We can use a database to log calls too, and it's quite easy to setup with **Datamapper** and Sinatra.
 Here's a simple database model:
 
-
+{% highlight ruby %}
       class Account
         include DataMapper::Resource
         property :id,             Serial
@@ -76,7 +79,6 @@ Here's a simple database model:
         property :created_at,     DateTime
         has n, :calls
       end
-
 
       class Call
         include DataMapper::Resource
@@ -103,13 +105,15 @@ Here's a simple database model:
         property :api_version,        String
         belongs_to :account
       end
+{% endhighlight %}
 
 Twilio provides the details of who's calling, from where and other useful infos. We can grab this informations
 for each request, with a **before** filter in Sinatra:
 
+{% highlight ruby %}
       before do
         if params["To"] and params["AccountSid"] and params["CallStatus"]
-          call = Call.new({    
+          call = Call.new({
             :account_sid =>   params["AccountSid"],
             :call_status =>   params["CallStatus"],
             :to_zip =>        params["ToZip"],
@@ -138,12 +142,12 @@ for each request, with a **before** filter in Sinatra:
           @account = account
         end
       end
-      
-      
+{% endhighlight %}
+
 Conclusion
 ----------
 
 It's easy, really easy to setup a simple call forwarding service with Twilio. When we get tired of receiving calls
-we can always disable the virtual phone number, hassle free. 
+we can always disable the virtual phone number, hassle free.
 
 Source code can be found here: [callforwarding](https://github.com/rosario/callforwarding "callforwarding")

@@ -17,30 +17,30 @@ As shown before, it's relatively easy to embed a [chat box on twitter](/2012/05/
 Doing the same for [last.fm](http://last.fm) is trivial. First, we need to add _omniauth\_lastfm_ in the _Gemfile_ of our Sinatra app.
 
 {% highlight ruby %}
-gem 'omniauth-lastfm'
+    gem 'omniauth-lastfm'
 {% endhighlight %}
 
 We need to add also the _require_ in the app file:
 
 {% highlight ruby %}
-require 'omniauth-lastfm'
+    require 'omniauth-lastfm'
 {% endhighlight %}
 
 Now we have to define the OAuth callback for Lastfm:
 
 {% highlight ruby %}
-get '/auth/lastfm/callback' do
-  auth = request.env["omniauth.auth"]
-  
-  user = User.first_or_create({ :uid => auth["uid"]}, {
-    :uid => auth["uid"],
-    :name => auth["info"]["name"],
-    :nickname => auth["info"]["name"],
-    :created_at => Time.now })
-  
-  session[:user_id] = user.id # User logged in
-  redirect 'http://last.fm'
-end
+  get '/auth/lastfm/callback' do
+    auth = request.env["omniauth.auth"]
+
+    user = User.first_or_create({ :uid => auth["uid"]}, {
+      :uid => auth["uid"],
+      :name => auth["info"]["name"],
+      :nickname => auth["info"]["name"],
+      :created_at => Time.now })
+
+    session[:user_id] = user.id # User logged in
+    redirect 'http://last.fm'
+  end
 {% endhighlight %}
 
 Chrome Extension
@@ -48,6 +48,7 @@ Chrome Extension
 
 We add a **Chrome Extension** that automatically loads up the javascript and opens the chat box. The _manifest.json_ is:
 
+{% highlight JSON %}
     {
        "content_scripts": [ {
           "js": [ "qop.js" ],
@@ -59,10 +60,11 @@ We add a **Chrome Extension** that automatically loads up the javascript and ope
        "version": "1.0",
        "manifest_version": 2
     }
-    
+{% endhighlight %}
 
 And the **qop.js** is:
 
+{% highlight javascript %}
     if (window.top === window) {
         (function(){
             link = document.createElement('link');
@@ -76,6 +78,7 @@ And the **qop.js** is:
             script.src = 'http://YOURSERVER/application.js';
             document.getElementsByTagName('head')[0].appendChild(script);})();
     }
+{% endhighlight %}
 
-That's all. Give it a spin if you'd like, but remember that it's _alpha_ code. 
+That's all. Give it a spin if you'd like, but remember that it's _alpha_ code.
 Here's the Chrome extension: [Chat on Last.fm](https://chrome.google.com/webstore/detail/qopim/afbllpelodekoheogfidhgncbfpendlj)

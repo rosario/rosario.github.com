@@ -31,21 +31,21 @@ The bookmarklet
 
 The bookmarklet loads the widget from our server, and this is the code:
 
-```javascript
-      (function(){
-        link = document.createElement('link');
-        link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        document.getElementsByTagName('head')[0].appendChild(link);
+{% highlight javascript %}
+  (function(){
+    link = document.createElement('link');
+    link.href = 'https://YOURQOPSERVER.herokuapp.com/assets/application.css';
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    document.getElementsByTagName('head')[0].appendChild(link);
 
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.async = true;
-        script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
-        document.getElementsByTagName('head')[0].appendChild(script);
-      })();
-```
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://YOURQOPSERVER.herokuapp.com/assets/application.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+  })();
+{% endhighlight %}
 
 
 Note that it will be easy to create a Chrome Extension, just add a _manifest.json_ and Chrome will do the rest. The
@@ -58,7 +58,7 @@ Loading, please wait
 
 We load jQuery and wait until is ready to be used. We also need to load Pusher library, and finally load **qop**.
 
-```coffeescript
+{% highlight coffeescript %}
       # Load jQuery
       done = false
       script = document.createElement('script')
@@ -79,13 +79,13 @@ We load jQuery and wait until is ready to be used. We also need to load Pusher l
               console.log 'failed'
 
       document.getElementsByTagName('head')[0].appendChild(script)
-```
+{% endhighlight %}
 
 
 
 The **App** class doesn't do much, just initialise Pusher with the right credentials, and creates the contact list.
 
-```coffeescript
+{% highlight coffeescript %}
       class QoP.App
         constructor: ->
           # Attach the widget to the page
@@ -96,7 +96,7 @@ The **App** class doesn't do much, just initialise Pusher with the right credent
           QoP.pusher = new Pusher 'APPKEY'
           #Load the contact list
           contacts = new QoP.Contacts('contact_list', 'Contact List')
-```
+{% endhighlight %}
 
 
 
@@ -119,7 +119,7 @@ browsers support CORS, and we only care about modern browsers. We could use JSON
 The browser makes _CORS_ requests to our server using jQuery:
 
 
-```coffeescript
+{% highlight coffeescript %}
       class QoP.Server
         @sendRequest: (service_name, data = null, callback = null) ->
           qop$.support.cors = true
@@ -140,7 +140,7 @@ The browser makes _CORS_ requests to our server using jQuery:
                withCredentials: true
             crossDomain: true
           return
-```
+{% endhighlight %}
 
 We force jQuery to use **cors**, by setting a flag to true, we also need to pass *xhrFields*
 and set **withCredentials** to true. It shouldn't be needed, but just in case we also set **crossDomain**
@@ -153,7 +153,7 @@ application we use the **rack-cors** gem. (You want to include localhost for tes
 
 
 
-```ruby
+{% highlight ruby %}
     # This goes in the Gemfile
     gem 'rack-cors', :require => 'rack/cors'
 
@@ -184,7 +184,7 @@ application we use the **rack-cors** gem. (You want to include localhost for tes
             :methods => [:get, :options],  :headers => :any, :credentials => true
       end
     end
-```
+{% endhighlight %}
 
 
 Each url corresponds to a service we provide to the chat widget.
@@ -194,7 +194,7 @@ My Friends are your Friends
 
 Let's see how to populate the contact list
 
-```coffeescript
+{% highlight coffeescript %}
     class QoP.Contacts extends QoP.Box
       constructor: (id, name) ->
         @presenceChannel = null
@@ -213,7 +213,7 @@ Let's see how to populate the contact list
           content = qop$(JST['content'](id: "content_#{id}"))
           @box.append content
           @trigger 'qop:init_presence'
-```
+{% endhighlight %}
 
 The **chat\_session** method returns a JSON object with user's online _@friends_,  _@uid_
 (unique identifier provided by Twitter) and  _@nickname_. Note, __online__ means the user has  been
@@ -224,7 +224,7 @@ handlebars templates).
 The **initPresenceChannel** function is called (via a trigger) if *chat\_session* request is succesful.
 
 
-```coffeescript
+{% highlight coffeescript %}
     initPresenceChannel: ->
       if @online
         @presenceChannel = QoP.pusher.subscribe("presence-#{@uid}")
@@ -235,7 +235,7 @@ The **initPresenceChannel** function is called (via a trigger) if *chat\_session
         @box.find('.contactlist').append qop$(JST['signup']({redirect: redirectUrl}))
         @trigger 'box:raise'
       return
-```
+{% endhighlight %}
 
 If the user is online (authenticated) we subscribe the user to **his own** presence channel.
 If the user is not  online, we will show a signup link inside the widget, asking the user to authenticate.
@@ -250,7 +250,7 @@ For example, we use the presence channel to let a user when a friend *joins* or 
 the chat. Pusher makes it really easy to know about these events via **webhooks**. Here's the server code:
 
 
-```ruby
+{% highlight ruby %}
     post '/webhooks' do
       webhook = Pusher::WebHook.new(request)
       if webhook.valid?
@@ -278,7 +278,7 @@ the chat. Pusher makes it really easy to know about these events via **webhooks*
       end
       return
     end
-```
+{% endhighlight %}
 
 When the user occupies the channel, the user status will be set to _online_, otherwise the user is _offline_.
 We use "cowboy" notifications to send these status changes, for each online friend we send a _friend\_status_
@@ -293,7 +293,7 @@ At this point the user is authenticated and his presence channel is working. It'
 and to open a chat box when we click on their nickname.
 
 
-```coffeescript
+{% highlight coffeescript %}
     presenceSucceeded: =>
       @trigger 'box:raise'
       for user in @friends
@@ -317,7 +317,7 @@ and to open a chat box when we click on their nickname.
     removeFriend: (user) ->
       @box.find(".friends_list p#contact_#{user.uid}").remove()
       return
-```
+{% endhighlight %}
 
 Adding an online friend is easy, we check if the friend isn't already shown, then we fill a template
 with the relevant data, and we append this template to the contact list. To remove an offline
@@ -328,7 +328,7 @@ Now we need to create a chat box. Pusher is here to help us again. We bind the c
 when we click on the nickname the browser does an _AJAX_ **chat\_request** to our server.
 
 
-```ruby
+{% highlight ruby %}
     post '/chat_request' do
       someone = User.first(:uid=> params[:uid])
       if someone and someone.online and current_user.friend?(someone)
@@ -358,7 +358,7 @@ when we click on the nickname the browser does an _AJAX_ **chat\_request** to ou
       content_type :json
       {:request => 'sent'}.to_json
     end
-```
+{% endhighlight %}
 
 If our friend is online we create a new channel. This channel holds the chat between the two users.
 We use Pusher to trigger a **create\_chat** event in the browsers.
@@ -366,14 +366,14 @@ We use Pusher to trigger a **create\_chat** event in the browsers.
 
 
 
-```coffeescript
+{% highlight coffeescript %}
     createChat: (data) =>
       channel_name = data.channel_name
       friend =  uid: data.uid, nickname: data.nickname
       user = uid: @uid, nickname: @nickname
       panel =  new QoP.Panel(channel_name, friend, user)
       return
-```
+{% endhighlight %}
 
 
 The _createChat_ creates a new Panel, and it allows us to chat with our friend.
@@ -386,7 +386,7 @@ The Panel is where we type our messages and chat with our friend. Each Panel has
 with it, and this channel is used to send chat messages.
 
 
-```coffeescript
+{% highlight coffeescript %}
     class QoP.Panel extends QoP.Box
       constructor: (channel_name,friend = {}, user = {}) ->
         @channel = null
@@ -394,24 +394,24 @@ with it, and this channel is used to send chat messages.
         @name = null
         @user = user
         @friend = friend
-```
+{% endhighlight %}
 
 To create the Panel, we render the template and append a text area.
 
 
 
-```coffeescript
+{% highlight coffeescript %}
     createBox: ->
       panel = qop$(JST['panel'](id: "panel_#{@friend.uid}"))
       @box.append panel
       textarea = qop$(JST['textarea'](uid: @friend.uid))
       @box.append textarea
-```
+{% endhighlight %}
 
 We also need to subscribe the users to the new channel.
 
 
-```coffeescript
+{% highlight coffeescript %}
     createChannel: ->
       if not @channel?
         @channel = QoP.pusher.subscribe(@channel_name)
@@ -419,7 +419,7 @@ We also need to subscribe the users to the new channel.
         @channel.bind 'pusher:subscription_error', console.log('User already subscribed')
         @channel.bind 'new_message', @messageReceived
       @channel
-```
+{% endhighlight %}
 
 
 
@@ -427,7 +427,7 @@ Twitter has keyboard shortcuts, we need to disable them when the user is typing.
 we send the message to our server:
 
 
-```coffeescript
+{% highlight coffeescript %}
     enableTextBox: ->
       textBox = @box.find('.chatboxtextarea')
       textBox.keypress (e) =>
@@ -443,7 +443,7 @@ we send the message to our server:
             data = uid: @friend.uid , text: text, channel_name: @channel_name
             QoP.Server.sendRequest('messages',data)
         return
-```
+{% endhighlight %}
 
 
 
@@ -451,14 +451,14 @@ Eventually, we'll also receive a message. Again, we render the message using han
 the message to the Panel. We also need to scroll the content all the way up to the top, so that we can read
 the message when it arrives.
 
-```coffeescript
+{% highlight coffeescript %}
     messageReceived: (data) =>
       nickname = data.nickname
       message = JST['message'](text: data.text, nickname: nickname)
       @box.find('.chatboxcontent').append(message)
       @box.find('.chatboxcontent').scrollTop 10000000
       return
-```
+{% endhighlight %}
 
 Conclusions
 -----------
