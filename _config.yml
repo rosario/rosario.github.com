@@ -10,10 +10,10 @@ highlighter: rouge
 logo: false
 paginate: 15
 baseurl: /
-domain_name: 'rosario.io'
-google_analytics: 'UA-31897052-1'
-gems: [jekyll-paginate]
+domain_name: "rosario.io"
+google_analytics: "UA-31897052-1"
+plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url:            '/'
-author:         'Rosario Rascuna'
+url: "/"
+author: "Rosario Rascuna"
