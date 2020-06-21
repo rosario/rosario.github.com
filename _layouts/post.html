@@ -1,14 +1,15 @@
 ---
 layout: default
-disqus: true
+disqus: false
 archive: false
 post_class: post-template
 ---
 
-<header class="main-header post-head {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
+<header class="main-header post-head {% if page.cover %}"
+    style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
     <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix">
-        <a class="back-button icon-arrow-left" href="{{ site.baseurl | relative_url }}">Homee</a>
-        <a class="subscribe-button icon-feed" href="{{ site.baseurl | relative_url }}feed.xml">Subscribe</a>
+        <a class="back-button icon-arrow-left" href="{{'/' | relative_url }}">Home</a>
+        <a class="subscribe-button icon-feed" href="{{'feed.xml' | relative_url }}">Subscribe</a>
     </nav>
 </header>
 
@@ -19,11 +20,12 @@ post_class: post-template
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
             <section class="post-meta" style="margin-bottom:1em;">
-
+                
                 {% if page.categories.size > 0 %}
-                    {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
+                {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
                 {% endif %}
-                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+                <time class="post-date"
+                    datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
             </section>
         </header>
 
@@ -36,7 +38,8 @@ post_class: post-template
             <h5>Archive</h5>
             <ul>
                 {% for post in site.posts %}
-                    <li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
+                <li><span>{{ post.date | date_to_string }}</span> <a
+                        href="{{ post.url  | relative_url}}">{{ post.title }}</a></li>
                 {% endfor %}
             </ul>
         </section>
@@ -45,29 +48,26 @@ post_class: post-template
         <footer class="post-footer">
             <!-- If we want to display author's name and bio -->
             {% if site.author %}
-                <figure class="author-image">
-                    <a class="img" href="{{ site.baseurl }}" style="background-image: url(/assets/images/profile.png)">
+            <figure class="author-image">
+                <a class="img" href="{{ site.baseurl }}"
+                    style="background-image: url({{'/assets/images/profile.png' | absolute_url}})">
                     <span class="hidden">{{site.author}}'s Picture</span></a>
-                </figure>
-                <section class="author">
-                    <!-- Author Name -->
-                    <h4> {{ site.author }} </h4>
-                    <!-- Author Bio -->
-                    <p> I'm a software developer working as a <a href="http://cirneco.digital/clojure-consultants-london">Clojure consultant in London</a>.
-                        Teaching at <a href="http://coderwave.com">Coderwave</a> and maintainer of the <a href="http://roundabout.io"> London Startup Map </a>.
-                        I'm <a href="http://twitter.com/_sarhus"> @_sarhus </a> on Twitter.
-                        You can find me on <a href="https://plus.google.com/107675697693587701246?rel=author"> Google+</a>.
-                    </p>
-                </section>
+            </figure>
+            <section class="author">
+                <!-- Author Name -->
+                <h4> {{ site.author }} </h4>
+                <!-- Author Bio -->
+                <p> I'm a software developer working as a <a href="http://cirneco.digital/clojure-consultants-london">Clojure consultant in London</a>.
+                    Teaching at <a href="http://coderwave.com">Coderwave</a> and maintainer of the <a href="http://roundabout.io">
+                        London Startup Map </a>.
+                    I'm <a href="http://twitter.com/_sarhus"> @_sarhus </a> on Twitter.
+                    You can find me on <a href="https://plus.google.com/107675697693587701246?rel=author"> Google+</a>.
+                </p>
+            </section>
             {% endif %}
 
             <!-- Share links section -->
             {% include share.html %}
-
-            <!-- Disqus comments -->
-            {% if page.disqus %}
-                {% include disqus.html %}
-            {% endif %}
 
         </footer>
 

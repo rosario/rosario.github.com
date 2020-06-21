@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>{{ site.name }} - {{ site.description }}</title>
-    <meta name="description" content="{{ site.meta_description}}" />
+  <title>{{ site.name }} - {{ site.description }}</title>
+  <meta name="description" content="{{ site.meta_description}}" />
 
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-    <!-- Customisation  -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
-    <meta name="google-site-verification" content="E5QWjEt__JKMGX4N_H_MlsBrj6ul7FA34r6hwd-0GhY" />
+  <link rel="stylesheet" type="text/css" href="{{'/assets/css/screen.css' | absolute_url}}" />
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+  <!-- Customisation  -->
+  <link rel="stylesheet" type="text/css" href="{{'/assets/css/main.css' | absolute_url}} " />
 
 </head>
+
 <body class="{% if page.post_class %}{{page.post_class}}{% else %}home-template{% endif %}">
 
-    {{ content }}
-    <footer class="site-footer clearfix">
-      <section class="copyright">
-        <a href="{{ site.baseurl }}">{{ site.name }}</a> &copy;
-              {{site.date}} &bull; All rights reserved.
-      </section>
-      <section class="poweredby">Made with Jekyll using
-        <a href="http://github.com/rosario/kasper">Kasper theme</a>
-      </section>
-    </footer>
+  {{ content }}
+  <footer class="site-footer clearfix">
+    <section class="copyright">
+      <a href="{{ site.baseurl }}">{{ site.name }}</a> &copy;
+      {{"now" | date: "%Y"}} &bull; All rights reserved.
+    </section>
+    <section class="poweredby">Made with Jekyll using
+      <a href="http://github.com/rosario/kasper">Kasper theme</a>
+    </section>
+  </footer>
 
-    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="/assets/js/index.js"></script>
+  <script type="text/javascript" src="{{'/assets/js/jquery-1.11.1.min.js' | absolute_url}}"></script>
+  <script type="text/javascript" src="{{'/assets/js/jquery.fitvids.js' | absolute_url }}"></script>
+  <script type="text/javascript" src="{{'/assets/js/index.js' | absolute_url }}"></script>
 
-    <!-- Google Analytics Tracking code -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <!-- Google Analytics Tracking code -->
+  <script type="text/javascript">
 
-      ga('create', '{{ site.google_analytics }}', 'auto');
-      ga('send', 'pageview');
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
+    _gaq.push(['_trackPageview']);
 
-    </script>
+    (function () {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-
+  </script>
 </body>
+
 </html>
