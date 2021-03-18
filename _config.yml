@@ -16,4 +16,4 @@ plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url: "/"
-author: "Rosario Rascunà"
+author: "Rosario"

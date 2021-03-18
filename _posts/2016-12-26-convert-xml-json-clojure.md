@@ -16,7 +16,7 @@ it can be done with this simple one-liner:
 
 
 ```clojure
-    (defn parse [s] (clojure.xml/parse (java.io.ByteArrayInputStream. (.getBytes s))))
+(defn parse [s] (clojure.xml/parse (java.io.ByteArrayInputStream. (.getBytes s))))
 ```
 
 However `clojure.xml/parse` returns a clojure hash with the following structure:
@@ -27,21 +27,21 @@ However `clojure.xml/parse` returns a clojure hash with the following structure:
 
 For example, if we have the following XML:
 
-```HTML
-    <hello>bravo</hello>
+```xml
+<hello>bravo</hello>
 ```
 
 The result of calling `(parse "<hello>bravo</hello>")` would be:
 
 
 ```clojure
-    {:attrs nil, :content ["bravo"], :tag :hello}
+{:attrs nil, :content ["bravo"], :tag :hello}
 ```
 
 Instead I wanted to produce the following output:
 
 ```clojure
-    {:hello "bravo"}
+{:hello "bravo"}
 ```
 
 After that, it's very easy to convert the previous Clojure map in JSON using
@@ -60,7 +60,7 @@ or Objects if you program in Javascript) the common base case is the empty objec
 We'll define function called `xml->json` and consider the following base cases:
 
 ```clojure
-    (defn xml->json [element]
+(defn xml->json [element]
       (cond
         (nil? element) nil
         (string? element) element
@@ -74,7 +74,7 @@ We'll define function called `xml->json` and consider the following base cases:
 The simplest XML to convert is `<hello>bravo</hello>`.
 
 ```clojure
-    (def simple-input (parse "<hello>bravo</hello>"))
+(def simple-input (parse "<hello>bravo</hello>"))
     ;{:attrs nil, :content ["bravo"], :tag :hello}
 ```
 
@@ -82,7 +82,7 @@ Let's add recursive condition to support that input
 
 
 ```clojure
-    (defn xml->json [element]
+(defn xml->json [element]
       (cond
         (nil? element) nil
         (string? element) element
@@ -97,7 +97,7 @@ and the value equals to `xml->json` applied to the `(:content element)`.
 If we try to run the previous code, we will get:
 
 ```clojure
-    (xml->json simple-input)
+(xml->json simple-input)
     ;{:hello nil}
 ```
 
@@ -107,7 +107,7 @@ a condition when there is a list of elements:
 
 
 ```clojure
-    (defn xml->json [element]
+(defn xml->json [element]
       (cond
         (nil? element) nil
         (string? element) element
@@ -124,21 +124,21 @@ The previous code `(sequential? element) (map (partial xml->json) element)` mean
 If we try again to run the modified version, we will see that:
 
 ```clojure
-    (xml->json simple-input)
+(xml->json simple-input)
     ; {:hello ("bravo")}
 ```
 
 That's better, we eventually get the value `"bravo"`, but it is not _right_ yet.
 In JSON we want to get this:
 
-```JSON
-    {"hello": "bravo"}
+```json
+{"hello": "bravo"}
 ```
 
 The previous code instead returns the following JSON:
 
-```JSON
-    {"hello": ["bravo"]}
+```json
+{"hello": ["bravo"]}
 ```
 
 >Note: We actually get a clojure map that would be converted into JSON using Cheshire.
@@ -149,7 +149,7 @@ Just for testing purposes, we can try to run the following:
 
 
 ```clojure
-    (def simple-nested (parse "<div><h1>hello</h1><h1>ciao</h1></div>"))
+(def simple-nested (parse "<div><h1>hello</h1><h1>ciao</h1></div>"))
     (xml->json simple-nested)
     ; {:div ({:h1 ("hello")} {:h1 ("ciao")})}
 ```
@@ -160,7 +160,7 @@ we do not want to return the _list_, instead we want to return the element itsel
 Let's fix the code again, considering that:
 
 ```clojure
-    (defn xml->json [element]
+(defn xml->json [element]
       (cond
         (nil? element) nil
         (string? element) element
@@ -180,7 +180,7 @@ we apply the `map` to every items, otherwise we call `xml->json` on the first it
 If we try now to run the previous code, it will produce the following output:
 
 ```clojure
-    (xml->json simple-nested)
+(xml->json simple-nested)
     ; {:div ({:h1 "hello"} {:h1 "ciao"})}
 ```
 
@@ -188,52 +188,52 @@ If we try now to run the previous code, it will produce the following output:
 ### Special case: Array or Object?
 There are few more special cases to consider. For example the following XML:
 
-```HTML
-    <div>
-        <h1> hello </h1>
-        <h1> ciao </h1>
-    </div>
+```xml
+<div>
+    <h1> hello </h1>
+    <h1> ciao </h1>
+</div>
 ```
 
 would be converted into this JSON
 
-```JSON
-    {
-        "div": [
-            {"h1": "hello"},
-            {"h1": "ciao"}
-        ]
-    }
+```json
+{
+    "div": [
+        {"h1": "hello"},
+        {"h1": "ciao"}
+    ]
+}
 ```
 
 It's an Array of Objects! Instead, this XML:
-```XML
-    <person>
-        <fullname> Salvatore </fullname>
-        <address> Catania </address>
-    </person>
+```xml
+<person>
+    <fullname> Salvatore </fullname>
+    <address> Catania </address>
+</person>
 ```
 
 It's *better* represented by the following JSON:
 
-```JSON
-    {
-        "person": {
-            "fullname": "Salvatore",
-            "address": "Catania"
-        }
+```json
+{
+    "person": {
+        "fullname": "Salvatore",
+        "address": "Catania"
     }
+}
 ```
 
 Instead, the function `xml->json` would produce:
 
-```JSON
-    {
-        "person": [
-            {"fullname": "Salvatore"},
-            {"address": "Catania"}
-        ]
-    }
+```json
+{
+    "person": [
+        {"fullname": "Salvatore"},
+        {"address": "Catania"}
+    ]
+}
 ```
 
 Array of Objects! Although both XML contains a sequence of inner elements, the JSON should be different.
@@ -243,14 +243,14 @@ It's mostly personal taste, both JSON representations are valid, but I think tha
 have an Object instead of an Array. For example, it's easier to access the property `fullname` like this:
 
 ```javascript
-    // Javascript code ahead!
-    var data = {
-        "person": {
-            "fullname": "Salvatore",
-            "address": "Catania"
-        }
+// Javascript code ahead!
+var data = {
+    "person": {
+        "fullname": "Salvatore",
+        "address": "Catania"
     }
-    console.log(data.person.fullname); // We can easily access the fullname property
+}
+console.log(data.person.fullname); // We can easily access the fullname property
 ```
 
 If we would have instead an array, it won't be possible to use the _dot notation_.
@@ -266,7 +266,7 @@ an JSON Object.
 Let's defined a helper function that checks if a sequence of elements are different:
 
 ```clojure
-    (defn different-keys? [content]
+(defn different-keys? [content]
       (when content
         (let [dkeys (count (filter identity (distinct (map :tag content))))
               n (count content)]
@@ -276,7 +276,7 @@ Let's defined a helper function that checks if a sequence of elements are differ
 Now, we can use the `different-keys?` in our recursive `xml->json`:
 
 ```clojure
-    (defn xml->json [element]
+(defn xml->json [element]
       (cond
         (nil? element) nil
         (string? element) element
@@ -303,11 +303,11 @@ Not yet! There's one more thing: XML _attributes_!
 We want the ability to support attributes, for example the following XML:
 
 
-```XML
-    <person gender="female">
-        <name> Carmela </name>
-        <address> Siracusa </address>
-    </person>
+```html
+<person gender="female">
+    <name> Carmela </name>
+    <address> Siracusa </address>
+</person>
 ```
 
 The attribute `gender` needs to be converted into a meaningful JSON object. Again, the following
@@ -348,20 +348,3 @@ I needed a simpler way to just transform XML into JSON, and came up with a recur
 I don't think it's optimised to handle large XML, but it shouldn't be that bad either.
 
 Feel free to use the code: [https://github.com/rosario/json-parse](https://github.com/rosario/json-parse).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

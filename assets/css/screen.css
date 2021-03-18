@@ -206,7 +206,7 @@ h4, h5, h6 {
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: 4rem;
     letter-spacing: -2px;
     text-indent: -3px;
 }
@@ -218,10 +218,12 @@ h2 {
 
 h3 {
     font-size: 3rem;
+    letter-spacing: -1px;
 }
 
 h4 {
     font-size: 2.5rem;
+    letter-spacing: -1px;
 }
 
 h5 {
